@@ -1,2 +1,2 @@
-this is my read me
 e-Voting System
+Joe Schell, Gui Costa, Patrick Owens
