@@ -2,7 +2,7 @@
 
 package evoting;
 
-//display results
+//display resultszzj
 public class Result {
 
 	private int candidateName;
