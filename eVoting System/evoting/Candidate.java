@@ -10,14 +10,18 @@ public class Candidate {
 
 	private void setName(String candidateName) {
 		throw new UnsupportedOperationException();
+
+	public void setName(String candidateName) {
+		
+
 	}
 
 	private void setParty(String candidateParty) {
 		throw new UnsupportedOperationException();
 	}
 
-	private String getName() {
-		throw new UnsupportedOperationException();
+	public String getName() {
+		return candidateName;
 	}
 
 	private String getParty() {
