@@ -24,7 +24,7 @@ public class Voter {
 		throw new UnsupportedOperationException();
 	}
 
-	private String writeIn() {
+	private String writeIn(String candidateName) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -40,11 +40,11 @@ public class Voter {
 		throw new UnsupportedOperationException();
 	}
 
-	private void setVoterID() {
+	private void setVoterID(String voterID) {
 		throw new UnsupportedOperationException();
 	}
 
-	private void setVoterName() {
+	private void setVoterName(String voterName) {
 		throw new UnsupportedOperationException();
 	}
 

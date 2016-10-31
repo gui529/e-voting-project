@@ -8,11 +8,11 @@ public class Candidate {
 	private String candidateParty;
 	private int numberOfVotes;
 
-	private void setName() {
+	private void setName(String candidateName) {
 		throw new UnsupportedOperationException();
 	}
 
-	private void setParty() {
+	private void setParty(String candidateParty) {
 		throw new UnsupportedOperationException();
 	}
 
