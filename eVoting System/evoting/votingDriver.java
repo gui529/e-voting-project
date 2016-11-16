@@ -8,8 +8,8 @@ public class votingDriver {
 			Candidate candidate1 = new Candidate();
 			Candidate candidate2 = new Candidate();
 
-			candidate1.setName("Trump");
-			candidate2.setName("Hillary");
+			candidate1.setName("Henry Brown");
+			candidate2.setName("Joyce Small");
 
 			System.out.println(candidate1.getName());
 			System.out.println(candidate2.getName());
