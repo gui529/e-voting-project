@@ -3,28 +3,37 @@ package evoting;
 
 
 public class Voter {
+	
+	
+    private String voterName;
+    private int voterID;
 
-	protected int voterID;
-	private String voterName;
+	public Voter(int voterID) {
+		this.voterID = voterID;
+
+	//protected int voterID;
+	//private String voterName;
 
 	/**
 	 * 
 	 * @param voterUserName
 	 * @param voterPassword
 	 */
+    }
 	private void login(String voterUserName, String voterPassword) {
-		throw new UnsupportedOperationException();
+		this.voterName = voterUserName;
+		//this.voterID = voter
 	}
 
 	/**
 	 * 
 	 * @param candidate
 	 */
-	private void castVote(Candidate candidate) {
+	public void castVote(Candidate candidate) {
 		throw new UnsupportedOperationException();
 	}
 
-	private String writeIn(String candidateName) {
+	public String writeIn(String candidateName) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -37,15 +46,16 @@ public class Voter {
 	}
 
 	public void printConfirmation() {
-		throw new UnsupportedOperationException();
+		System.out.printf("Thank you, you have voting");
+		
 	}
 
-	private void setVoterID(String voterID) {
-		throw new UnsupportedOperationException();
+	private void setVoterID(int voterID) {
+		this.voterID = voterID;
 	}
 
 	private void setVoterName(String voterName) {
-		throw new UnsupportedOperationException();
+		this.voterName = voterName;
 	}
 
 	private int getvoterID() {

@@ -25,8 +25,11 @@ public class VotingServer {
 	 * @param userName
 	 * @param Password
 	 */
-	protected void validateLogin(String userName, String Password) {
-		throw new UnsupportedOperationException();
+	public boolean validateLogin(int voterID, String lastName, int last4social) {
+		return (voterID == 123 & lastName.equals("costa") && last4social == 456);
+			
+		
+		
 	}
 
 	/**
