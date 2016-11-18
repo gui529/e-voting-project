@@ -1,5 +1,7 @@
 package evoting;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class votingDriver {
@@ -28,23 +30,31 @@ public class votingDriver {
 			VotingServer VotingServer = new VotingServer();
 			
 			//If valid voter
-			if (VotingServer.validateLogin(voterID, last_name, last4Social))  {
-				
-				Voter voter = new Voter(voterID);
-				
-				System.out.println("Please choose between the candidates:");
-				System.out.printf("1. %s\n",candidate1.getName());
-				System.out.printf("2. %s\n",candidate2.getName());
+			try {
+				if (VotingServer.validateLogin(voterID, last_name, last4Social))  {
+					
+					Voter voter = new Voter(voterID);
+					
+					System.out.println("Please choose between the candidates:");
+					System.out.printf("1. %s\n",candidate1.getName());
+					System.out.printf("2. %s\n",candidate2.getName());
 
 
-						
-				
-				System.out.println("SUCCESS");
-			}
-			else
-			{
-				System.out.println("Your voter registration was not found.");
-				return;
+							
+					
+					System.out.println("SUCCESS");
+				}
+				else
+				{
+					System.out.println("Your voter registration was not found.");
+					return;
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 			
