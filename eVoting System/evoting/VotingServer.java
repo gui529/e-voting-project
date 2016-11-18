@@ -46,8 +46,8 @@ public class VotingServer {
 		    StringTokenizer st = new StringTokenizer(line);
 		    int i =0;
 		    while(st.hasMoreTokens()){
-		    	//voterInfo[0][i] = st.nextToken(); 
-		    	System.out.println(st.nextToken());
+		    	voterInfo[0][i] = st.nextToken(); 
+		    	//System.out.println(st.nextToken());
 		    	i++;
 		    	
 		    }
