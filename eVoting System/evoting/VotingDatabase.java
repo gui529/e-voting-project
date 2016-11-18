@@ -109,23 +109,23 @@ public class VotingDatabase extends votingDriver{
 		// Inserts 3 votes into the table 
 		try {
 		   String insertString = 
-				    "INSERT INTO " + this.tableName + 		   
-		            "(VOTER_ID, LAST_NAME, LAST_4_SOCIAL)" + 				
+				    "INSERT INTO Voter" + 		   
+		            "(NAME, VOTER_ID , SOCIAL)" + 				
 		            "VALUES" +								
-				    votingDriver.voterID;
-		   String insertString2 = 
-				    "INSERT INTO " + this.tableName + 		   
-		            "(VOTE_ID, VOTER_ID, VOTED_FOR_ID, VOTE_DOWN, VOTE_UP )" + 				
-		            "VALUES" +								
-				    "(2, 2, 5678, 1, 0)";
-		   String insertString3 = 
-				    "INSERT INTO " + this.tableName + 		   
-		            "(VOTE_ID, VOTER_ID, VOTED_FOR_ID, VOTE_DOWN, VOTE_UP )" + 				
-		            "VALUES" +								
-				    "(3, 3, 91011, 0, 1)";
+				    "(John Smith, 123, 458488457)"; 
+//		   String insertString2 = 
+//				    "INSERT INTO " + this.tableName + 		   
+//		            "(VOTE_ID, VOTER_ID, VOTED_FOR_ID, VOTE_DOWN, VOTE_UP )" + 				
+//		            "VALUES" +								
+//				    "(2, 2, 5678, 1, 0)";
+//		   String insertString3 = 
+//				    "INSERT INTO " + this.tableName + 		   
+//		            "(VOTE_ID, VOTER_ID, VOTED_FOR_ID, VOTE_DOWN, VOTE_UP )" + 				
+//		            "VALUES" +								
+//				    "(3, 3, 91011, 0, 1)";
 		   this.executeUpdate(conn, insertString);
-		   this.executeUpdate(conn, insertString2);
-		   this.executeUpdate(conn, insertString3);
+//		   this.executeUpdate(conn, insertString2);
+//		   this.executeUpdate(conn, insertString3);
 		   System.out.println("Inserted into table");
 	     } catch (SQLException f) {
 			System.out.println("ERROR: Could not insert into table");
