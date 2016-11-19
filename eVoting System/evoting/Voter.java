@@ -7,6 +7,7 @@ public class Voter {
 	
     private String voterName;
     private String voterID;
+    boolean isLoggedIn;
 
 	public Voter(String voterID) {
 		this.voterID = voterID;
@@ -23,12 +24,17 @@ public class Voter {
 	private void login(String voterID, String name, String social) {
 		this.voterName = name;
 		//this.voterID = voter
+		isLoggedIn = true;
 	}
 
 	/**
 	 * 
 	 * @param candidate
 	 */
+	
+	
+	
+	
 	public void castVote(Candidate candidate) {
 		throw new UnsupportedOperationException();
 	}
