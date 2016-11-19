@@ -13,7 +13,7 @@ import java.util.Properties;
  This class instantiates our voting database
  */
 
-public class VotingDatabase extends votingDriver{
+public class VotingDatabase extends VotingDriver{
 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";

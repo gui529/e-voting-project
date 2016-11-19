@@ -45,14 +45,21 @@ public class Voter {
 		int Choice = sc.nextInt();
 		chosenCandidate = null;
 		
+	
 		if (Choice ==1){
 			System.out.printf("You have chosen candidate %s, Is this correct?%n", candidate1.getName());
 			chosenCandidate = candidate1;
 		}
-		if (Choice ==2){
+		else if (Choice ==2){
 			System.out.printf("You have chosen candidate %s , Is this correct?%n", candidate2.getName());
 			chosenCandidate = candidate2;
-
+		}
+		else{
+			while(Choice != 1 || Choice != 2){
+			System.out.println("Sorry, that is not a valid choice.  Please enter 1 or 2.");
+			Choice = sc.nextInt();
+			}
+			
 		}
 		
 		System.out.println("1. YES");
