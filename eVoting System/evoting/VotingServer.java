@@ -14,7 +14,7 @@ public class VotingServer {
 	BufferedReader br;
 	private int voterID;
 	private int[] officialTally = new int[8];
-	String[][] voterInfo = new String [1][4];
+	String[] voterInfo = new String [4];
 
 	protected void getTally() {
 		throw new UnsupportedOperationException();
@@ -38,20 +38,32 @@ public class VotingServer {
 	 */
 	public boolean validateLogin(String voterID, String name, String social) throws FileNotFoundException, IOException {
 		try{
+			
+		boolean done = false;
 		br = new BufferedReader(new FileReader("registrationList.txt")); 
-		    //StringBuilder sb = new StringBuilder();
-		    String line = br.readLine();
-		    System.out.println(line);
 		    
-		
+		String line;// = br.readLine();
+
+		while ((line = br.readLine()) != null){
+	       // line = br.readLine();
+	        
 		    StringTokenizer st = new StringTokenizer(line);
 		    int i =0;
 		    while(st.hasMoreTokens()){
-		    	voterInfo[0][i] = st.nextToken(); 
-		    	//System.out.println(st.nextToken());
+		    	voterInfo[i] = st.nextToken(); 
 		    	i++;
 		    	
 		    }
+
+		    if (voterInfo[3].contains(voterID) && voterInfo[1].contains(name) && voterInfo[2].contains(social)  ){
+		    	return true;
+		    }
+			
+		}
+		    
+		    
+		    
+
 		    
 		    
 		}

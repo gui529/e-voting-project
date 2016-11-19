@@ -31,18 +31,15 @@ public class votingDriver {
 			
 			//If valid voter
 			try {
-				if (VotingServer.validateLogin(voterID, name, social))  {
-					
+				if (VotingServer.validateLogin(voterID, name,social))  {
+					System.out.println("Registration found successfully.");
+
 					Voter voter = new Voter(voterID);
 					
 					System.out.println("Please choose between the candidates:");
 					System.out.printf("1. %s\n",candidate1.getName());
 					System.out.printf("2. %s\n",candidate2.getName());
 
-
-							
-					
-					System.out.println("SUCCESS");
 				}
 				else
 				{

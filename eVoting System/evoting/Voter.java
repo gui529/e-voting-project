@@ -12,7 +12,7 @@ public class Voter {
 	public Voter(String voterID) {
 		this.voterID = voterID;
 
-	//protected String voterID;
+	//protected int voterID;
 	//private String voterName;
 
 	/**
