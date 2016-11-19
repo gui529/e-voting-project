@@ -9,6 +9,8 @@ public class Admin {
 	private int[] officialTally = new int[8];
 	private int adminID;
 	private int adminPassword;
+	private int numTotalVotes;
+	private int numTotalVoters;
 
 	private int[] getUnofficialTally() {
 		return this.unofficialTally;
