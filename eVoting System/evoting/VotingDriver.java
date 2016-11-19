@@ -10,11 +10,8 @@ public class VotingDriver {
 
 	public static void main(String[] args) {
 			boolean done= false;
-
-			while (!done){
-		
-			     	Scanner sc = new Scanner(System.in);
-		
+			
+			
 					Candidate candidate1 = new Candidate();
 					Candidate candidate2 = new Candidate();
 		
@@ -22,7 +19,13 @@ public class VotingDriver {
 					candidate2.setName("Joyce Smalls");
 					
 					candidate1.setParty("Democrat");
-					candidate2.setParty("Republican");
+					candidate2.setParty("Republican");	
+
+			while (!done){
+		
+			     	Scanner sc = new Scanner(System.in);
+		
+
 		
 					
 					System.out.println("Welcome to eVoting, type your voter ID number to start: ");
