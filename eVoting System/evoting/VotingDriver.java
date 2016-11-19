@@ -4,12 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-<<<<<<< HEAD:eVoting System/evoting/VotingDriver.java
+
 public class VotingDriver {
-=======
-public class votingDriver {
 	
->>>>>>> d7505a46d0b563b8682592c92c23b467c96a2e7d:eVoting System/evoting/votingDriver.java
+
 
 
 	public static void main(String[] args) {
