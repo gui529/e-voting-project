@@ -9,6 +9,7 @@ public class Voter {
     private String voterName;
     private String voterID;
     Candidate chosenCandidate;
+    boolean isLoggedIn;
 
 	public Voter(String voterID) {
 		this.voterID = voterID;
@@ -25,6 +26,7 @@ public class Voter {
 	private void login(String voterID, String name, String social) {
 		this.voterName = name;
 		//this.voterID = voter
+		isLoggedIn = true;
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class Voter {
 		chosenCandidate = null;
 		
 		if (Choice ==1){
-			System.out.printf("You have chosen candidate %s, Is this correct?", candidate1.getName());
+			System.out.printf("You have chosen candidate %s, Is this correct?%n", candidate1.getName());
 			chosenCandidate = candidate1;
 		}
 		if (Choice ==2){
@@ -61,10 +63,9 @@ public class Voter {
 			editVote(candidate1,candidate2);
 		}
 
-
-
-		
 	}
+
+
 
 	public String writeIn(String candidateName) {
 		throw new UnsupportedOperationException();
