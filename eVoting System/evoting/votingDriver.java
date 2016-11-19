@@ -25,13 +25,13 @@ public class votingDriver {
 			System.out.println("Type your last name");
 			String last_name = sc.next();
 			System.out.println("Type last four of your social:");
-			int last4Social = sc.nextInt();
+			int social = sc.nextInt();
 			
 			VotingServer VotingServer = new VotingServer();
 			
 			//If valid voter
 			try {
-				if (VotingServer.validateLogin(voterID, last_name, last4Social))  {
+				if (VotingServer.validateLogin(voterID, name, social))  {
 					
 					Voter voter = new Voter(voterID);
 					
