@@ -8,8 +8,12 @@ public class Voter {
 	
     private String voterName;
     private String voterID;
+
+    boolean isLoggedIn = false;
+
     Candidate chosenCandidate;
-    boolean isLoggedIn;
+   
+
 
 	public Voter(String voterID) {
 		this.voterID = voterID;
@@ -87,7 +91,7 @@ public class Voter {
 	}
 
 	public void printConfirmation() {
-		System.out.printf("Thank you, you have voting");
+		System.out.printf("Thank you, you have voted");
 		
 	}
 
