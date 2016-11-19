@@ -29,27 +29,18 @@ public class votingDriver {
 			
 			VotingServer VotingServer = new VotingServer();
 			
-			//If valid voter
 			try {
 				if (VotingServer.validateLogin(voterID, name,social))  {
 					System.out.println("Registration found successfully.");
 
 					Voter voter = new Voter(voterID);
 					
-					System.out.println("Please choose between the candidates:");
-					System.out.printf("1. %s\n",candidate1.getName());
-					System.out.printf("2. %s\n",candidate2.getName());
+					voter.castVote(candidate1, candidate2);
 					
+				
+				//	int candidateChoice = sc.nextInt();
 					
 
-					int candidateChoice = sc.nextInt();
-					
-					if (candidateChoice  == 1){
-						voter.castVote(candidate1);
-					}
-					if (candidateChoice  == 2){
-						voter.castVote(candidate2);
-					}
 					
 
 

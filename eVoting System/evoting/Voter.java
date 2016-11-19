@@ -1,12 +1,14 @@
 
 package evoting;
 
+import java.util.Scanner;
 
 public class Voter {
 	
 	
     private String voterName;
     private String voterID;
+    Candidate chosenCandidate;
 
 	public Voter(String voterID) {
 		this.voterID = voterID;
@@ -29,7 +31,38 @@ public class Voter {
 	 * 
 	 * @param candidate
 	 */
-	public void castVote(Candidate candidate) {
+	public void castVote(Candidate candidate1, Candidate candidate2) {
+		System.out.println("Please choose between the candidates:");
+		System.out.printf("1. %s\n",candidate1.getName());
+		System.out.printf("2. %s\n",candidate2.getName());
+	    Scanner sc = new Scanner(System.in);
+		int Choice = sc.nextInt();
+		chosenCandidate = null;
+		
+		if (Choice ==1){
+			System.out.printf("You have chosen candidate %s, Is this correct?", candidate1.getName());
+			chosenCandidate = candidate1;
+		}
+		if (Choice ==2){
+			System.out.printf("You have chosen candidate %s , Is this correct?%n", candidate2.getName());
+			chosenCandidate = candidate2;
+
+		}
+		
+		System.out.println("1. YES");
+		System.out.println("2. NO");
+		
+		Choice = sc.nextInt();
+		
+		if (Choice ==1){  //YES
+			confirmVote(chosenCandidate);
+		}
+		if (Choice ==2){  //NO
+			editVote(candidate1,candidate2);
+		}
+
+
+
 		
 	}
 
@@ -37,12 +70,19 @@ public class Voter {
 		throw new UnsupportedOperationException();
 	}
 
-	private void editVote() {
-		throw new UnsupportedOperationException();
+	private void editVote(Candidate candidate1, Candidate candidate2) {
+
+		System.out.println("Repicking Candidate");
+		chosenCandidate = null;
+		castVote(candidate1, candidate2);
+
+		
+		
+
 	}
 
-	private void confirmVote() {
-		throw new UnsupportedOperationException();
+	private void confirmVote(Candidate candidate) {
+		candidate.addVote();
 	}
 
 	public void printConfirmation() {
@@ -65,5 +105,6 @@ public class Voter {
 	private String getVoterName() {
 		return this.voterName;
 	}
+
 
 }
