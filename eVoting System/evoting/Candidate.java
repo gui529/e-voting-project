@@ -37,9 +37,10 @@ public class Candidate {
 	
 	public void addVote(){
 		numberOfVotes++;
+		
 
 		try {
-			myWriter = new FileWriter("Votes.txt",false);
+			myWriter = new FileWriter("Votes.txt",true);
 			myWriter.write(getName()+" "+numberOfVotes+System.lineSeparator());
 			myWriter.close();
 		} catch (IOException e) {
