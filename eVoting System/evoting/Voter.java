@@ -6,12 +6,12 @@ public class Voter {
 	
 	
     private String voterName;
-    private int voterID;
+    private String voterID;
 
-	public Voter(int voterID) {
+	public Voter(String voterID) {
 		this.voterID = voterID;
 
-	//protected int voterID;
+	//protected String voterID;
 	//private String voterName;
 
 	/**
@@ -50,7 +50,7 @@ public class Voter {
 		
 	}
 
-	private void setVoterID(int voterID) {
+	private void setVoterID(String voterID) {
 		this.voterID = voterID;
 	}
 
@@ -58,7 +58,7 @@ public class Voter {
 		this.voterName = voterName;
 	}
 
-	private int getvoterID() {
+	private String getvoterID() {
 		return this.voterID;
 	}
 

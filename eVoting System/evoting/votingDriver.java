@@ -21,11 +21,11 @@ public class votingDriver {
 
 			
 			System.out.println("Welcome to eVoting, type your voter ID number to start: ");
-			int voterID = sc.nextInt();
+			String voterID = sc.next();
 			System.out.println("Type your last name");
-			String last_name = sc.next();
+			String name = sc.next();
 			System.out.println("Type last four of your social:");
-			int social = sc.nextInt();
+			String social = sc.next();
 			
 			VotingServer VotingServer = new VotingServer();
 			
