@@ -20,8 +20,8 @@ public class Voter {
 	 * @param voterPassword
 	 */
     }
-	private void login(String voterUserName, String voterPassword) {
-		this.voterName = voterUserName;
+	private void login(String voterID, String name, String social) {
+		this.voterName = name;
 		//this.voterID = voter
 	}
 

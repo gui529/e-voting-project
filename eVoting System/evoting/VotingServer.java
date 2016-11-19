@@ -30,12 +30,13 @@ public class VotingServer {
 
 	/**
 	 * 
-	 * @param userName
-	 * @param Password
+	 * @param voterID
+	 * @param lastName
+	 * @param social
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public boolean validateLogin(int voterID, String lastName, int last4social) throws FileNotFoundException, IOException {
+	public boolean validateLogin(String voterID, String name, String social) throws FileNotFoundException, IOException {
 		try{
 		br = new BufferedReader(new FileReader("registrationList.txt")); 
 		    //StringBuilder sb = new StringBuilder();
@@ -47,7 +48,7 @@ public class VotingServer {
 		    int i =0;
 		    while(st.hasMoreTokens()){
 		    	voterInfo[0][i] = st.nextToken(); 
-		    	System.out.println(st.nextToken());
+		    	//System.out.println(st.nextToken());
 		    	i++;
 		    	
 		    }
@@ -63,15 +64,15 @@ public class VotingServer {
 	}
 	
 	
+	
+	
 
 	/**
 	 * 
 	 * @param voterUserName
 	 * @param VoterPassword
 	 */
-	private void checkIfRegistered(String voterUserName, String VoterPassword) {
-		throw new UnsupportedOperationException();
-	}
+	
 
 	protected void displayCandidate() {
 		throw new UnsupportedOperationException();
