@@ -47,7 +47,7 @@ public class VotingServer {
 		    int i =0;
 		    while(st.hasMoreTokens()){
 		    	voterInfo[0][i] = st.nextToken(); 
-		    	//System.out.println(st.nextToken());
+		    	System.out.println(st.nextToken());
 		    	i++;
 		    	
 		    }
