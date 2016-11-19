@@ -30,5 +30,9 @@ public class Candidate {
 		
 		numberOfVotes++;
 	}
+	
+	public int getVotes(){
+		return numberOfVotes;
+	}
 
 }

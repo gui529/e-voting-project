@@ -8,12 +8,8 @@ public class Voter {
 	
     private String voterName;
     private String voterID;
-
-    boolean isLoggedIn = false;
-
     Candidate chosenCandidate;
-   
-
+    boolean isLoggedIn;
 
 	public Voter(String voterID) {
 		this.voterID = voterID;
@@ -70,11 +66,6 @@ public class Voter {
 	}
 
 
-
-	public String writeIn(String candidateName) {
-		throw new UnsupportedOperationException();
-	}
-
 	private void editVote(Candidate candidate1, Candidate candidate2) {
 
 		System.out.println("Repicking Candidate");
@@ -88,19 +79,13 @@ public class Voter {
 
 	private void confirmVote(Candidate candidate) {
 		candidate.addVote();
+		
+		printConfirmation();
 	}
 
 	public void printConfirmation() {
-		System.out.printf("Thank you, you have voted");
+		System.out.println("Thank you, you have voted");
 		
-	}
-
-	private void setVoterID(String voterID) {
-		this.voterID = voterID;
-	}
-
-	private void setVoterName(String voterName) {
-		this.voterName = voterName;
 	}
 
 	private String getvoterID() {
