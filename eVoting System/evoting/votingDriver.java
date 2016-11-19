@@ -39,6 +39,22 @@ public class votingDriver {
 					System.out.println("Please choose between the candidates:");
 					System.out.printf("1. %s\n",candidate1.getName());
 					System.out.printf("2. %s\n",candidate2.getName());
+					
+					
+
+					int candidateChoice = sc.nextInt();
+					
+					if (candidateChoice  == 1){
+						voter.castVote(candidate1);
+					}
+					if (candidateChoice  == 2){
+						voter.castVote(candidate2);
+					}
+					
+
+
+					
+					
 
 				}
 				else

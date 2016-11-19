@@ -30,7 +30,7 @@ public class Voter {
 	 * @param candidate
 	 */
 	public void castVote(Candidate candidate) {
-		throw new UnsupportedOperationException();
+		
 	}
 
 	public String writeIn(String candidateName) {

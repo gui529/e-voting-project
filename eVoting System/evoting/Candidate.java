@@ -25,5 +25,10 @@ public class Candidate {
 	public String getParty() {
 		return candidateParty;
 	}
+	
+	public void addVote(){
+		
+		numberOfVotes++;
+	}
 
 }
