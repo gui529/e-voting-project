@@ -4,10 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-
-public class VotingDriver {
+public class votingDriver {
 	
-
 
 
 	public static void main(String[] args) {
