@@ -13,7 +13,7 @@ import java.util.Properties;
  This class instantiates our voting database
  */
 
-public class VotingDatabase extends VotingDriver{
+public class VotingDatabase {
 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
@@ -90,12 +90,12 @@ public class VotingDatabase extends VotingDriver{
 		// Create Voter table
 		
 		try {
-		    String createString =
-			        "CREATE TABLE " + "Voter" + " ( " +
-			        "VOTER_ID INTEGER NOT NULL, " +
-			        "LAST_NAME INTEGER NOT NULL, " +
-			        "LAST_4_SOCIAL INTEGER NOT NULL,";
-			this.executeUpdate(conn, createString);
+		    String createVoter =
+			        "CREATE TABLE IF NOT EXISTS " + "Voter" + "(" +
+			        "NAME VARCHAR(50), " +
+			        "LAST_4_SOCIAL INTEGER NOT NULL, " +
+			        "VOTER_ID INTEGER NOT NULL)";
+			this.executeUpdate(conn, createVoter);
 			System.out.println("Created a table");
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the table");
@@ -104,41 +104,78 @@ public class VotingDatabase extends VotingDriver{
 		
 	    }
 		
-		// Insert into table Voter	
-		
-		// Inserts 3 votes into the table 
+		// Create Candidate table
 		try {
-		   String insertString = 
-				    "INSERT INTO Voter" + 		   
-		            "(NAME, VOTER_ID , SOCIAL)" + 				
-		            "VALUES" +								
-				    "(Diane Verville, 4533, 768342)"; 
-		   String insertString2 = 
-				    "INSERT INTO " + this.tableName + 		   
-		            "(NAME, VOTER_ID , SOCIAL)" + 				
-		            "VALUES" +								
-				    "(Nadia Lozier, 6421, 492342)";
-		   String insertString3 = 
-				    "INSERT INTO " + this.tableName + 		   
-		            "(NAME, VOTER_ID , SOCIAL)" + 				
-		            "VALUES" +								
-				    "(Lemuel Mosbey, 1356, 134233)";
-		   String insertString4 = 
-				    "INSERT INTO " + this.tableName + 		   
-		            "(NAME, VOTER_ID , SOCIAL)" + 				
-		            "VALUES" +								
-				    "(Stacee Shuler, 9034, 6323494)";
-		   this.executeUpdate(conn, insertString);
-		   this.executeUpdate(conn, insertString2);
-		   this.executeUpdate(conn, insertString3);
-		   this.executeUpdate(conn, insertString4);
-		   System.out.println("Inserted into table");
+		    String createCandidate =
+			        "CREATE TABLE IF NOT EXISTS " + "Candidate" + "(" +
+			        "NAME VARCHAR(50))";
+			this.executeUpdate(conn, createCandidate);
+			System.out.println("Created a table");
+	    } catch (SQLException e) {
+			System.out.println("ERROR: Could not create the table");
+			e.printStackTrace();
+			return;
+		
+	    }
+		
+		
+		
+		// Inserts votes into the Voter table 
+		try {
+		   String insertVoter1 = 
+				    "INSERT INTO Voter " + 		   
+		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Diane Verville', 4533, 768342)"; 
+		   String insertVoter2 = 
+				    "INSERT INTO Voter " + 		   
+		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Nadia Lozier', 6421, 492342)";
+		   String insertVoter3 = 
+				    "INSERT INTO Voter " + 		   
+		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Lemuel Mosbey', 1356, 134233)";
+		   String insertVoter4 = 
+				    "INSERT INTO Voter " + 		   
+		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Stacee Shuler', 9034, 6323494)";
+		   this.executeUpdate(conn, insertVoter1);
+		   this.executeUpdate(conn, insertVoter2);
+		   this.executeUpdate(conn, insertVoter3);
+		   this.executeUpdate(conn, insertVoter4);
+		   System.out.println("Inserted into Voter table");
 	     } catch (SQLException f) {
 			System.out.println("ERROR: Could not insert into table");
 			f.printStackTrace();
 			return;
 	     
 	     }	
+		
+		// Inserts Candidates into the Candidate table 
+				try {
+				   String insertCandidate1 = 
+						    "INSERT INTO Candidate " + 		   
+				            "(NAME) " + 				
+				            "VALUES " +								
+						    "('Henry Brown')"; 
+				   String insertCandidate2 = 
+						    "INSERT INTO Candidate " + 		   
+				            "(NAME) " + 				
+				            "VALUES " +								
+						    "('Joyce Smalls')";
+				   this.executeUpdate(conn, insertCandidate1);
+				   this.executeUpdate(conn, insertCandidate2);
+			
+				   System.out.println("Inserted into Candidate table");
+			     } catch (SQLException f) {
+					System.out.println("ERROR: Could not insert into table");
+					f.printStackTrace();
+					return;
+			     
+			     }	
 		
 		
 		// Display the table
@@ -155,15 +192,15 @@ public class VotingDatabase extends VotingDriver{
 		
 		// Drop the table
 		// Comment this out when you don't want your table to be deleted
-		try {
-		    String dropString = "DROP TABLE " + this.tableName;
-			this.executeUpdate(conn, dropString);
-			System.out.println("Dropped the table");
-	    } catch (SQLException g) {
-			System.out.println("ERROR: Could not drop the table");
-			g.printStackTrace();
-			return;
-	    }
+//		try {
+//		    String dropString = "DROP TABLE " + this.tableName;
+//			this.executeUpdate(conn, dropString);
+//			System.out.println("Dropped the table");
+//	    } catch (SQLException g) {
+//			System.out.println("ERROR: Could not drop the table");
+//			g.printStackTrace();
+//			return;
+//	    }
 	     
 	
 	}
