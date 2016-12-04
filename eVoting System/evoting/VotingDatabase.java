@@ -28,10 +28,10 @@ public class VotingDatabase extends VotingDriver{
 	private final int portNumber = 3306;
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
-	private final String dbName = "test?autoReconnect=true&useSSL=false"; //added this because of SSL error
+	private final String dbName = "voting?autoReconnect=true&useSSL=false"; //added this because of SSL error
 	
 	/** The name of the table we are testing with */
-	private final String tableName = "VOTING";
+	private final String tableName = "Voter";
 	
 	/**
 	 * Get a new database connection
@@ -112,20 +112,26 @@ public class VotingDatabase extends VotingDriver{
 				    "INSERT INTO Voter" + 		   
 		            "(NAME, VOTER_ID , SOCIAL)" + 				
 		            "VALUES" +								
-				    "(John Smith, 123, 458488457)"; 
-//		   String insertString2 = 
-//				    "INSERT INTO " + this.tableName + 		   
-//		            "(VOTE_ID, VOTER_ID, VOTED_FOR_ID, VOTE_DOWN, VOTE_UP )" + 				
-//		            "VALUES" +								
-//				    "(2, 2, 5678, 1, 0)";
-//		   String insertString3 = 
-//				    "INSERT INTO " + this.tableName + 		   
-//		            "(VOTE_ID, VOTER_ID, VOTED_FOR_ID, VOTE_DOWN, VOTE_UP )" + 				
-//		            "VALUES" +								
-//				    "(3, 3, 91011, 0, 1)";
+				    "(Diane Verville, 4533, 768342)"; 
+		   String insertString2 = 
+				    "INSERT INTO " + this.tableName + 		   
+		            "(NAME, VOTER_ID , SOCIAL)" + 				
+		            "VALUES" +								
+				    "(Nadia Lozier, 6421, 492342)";
+		   String insertString3 = 
+				    "INSERT INTO " + this.tableName + 		   
+		            "(NAME, VOTER_ID , SOCIAL)" + 				
+		            "VALUES" +								
+				    "(Lemuel Mosbey, 1356, 134233)";
+		   String insertString4 = 
+				    "INSERT INTO " + this.tableName + 		   
+		            "(NAME, VOTER_ID , SOCIAL)" + 				
+		            "VALUES" +								
+				    "(Stacee Shuler, 9034, 6323494)";
 		   this.executeUpdate(conn, insertString);
-//		   this.executeUpdate(conn, insertString2);
-//		   this.executeUpdate(conn, insertString3);
+		   this.executeUpdate(conn, insertString2);
+		   this.executeUpdate(conn, insertString3);
+		   this.executeUpdate(conn, insertString4);
 		   System.out.println("Inserted into table");
 	     } catch (SQLException f) {
 			System.out.println("ERROR: Could not insert into table");
