@@ -39,6 +39,10 @@ public class VotingServer {
 	public boolean validateLogin(String voterID, String name, String social) throws FileNotFoundException, IOException {
 		try{
 			
+			if (voterID.equals("") || name.equals("") || social.equals("")){
+				return false;
+			}
+			
 		boolean done = false;
 		br = new BufferedReader(new FileReader("registrationList.txt")); 
 		    
