@@ -96,9 +96,9 @@ public class VotingDatabase {
 			        "LAST_4_SOCIAL INTEGER NOT NULL, " +
 			        "VOTER_ID INTEGER NOT NULL)";
 			this.executeUpdate(conn, createVoter);
-			System.out.println("Created a table");
+			System.out.println("Created Voter table");
 	    } catch (SQLException e) {
-			System.out.println("ERROR: Could not create the table");
+			System.out.println("ERROR: Could not create Voter table");
 			e.printStackTrace();
 			return;
 		
@@ -110,9 +110,9 @@ public class VotingDatabase {
 			        "CREATE TABLE IF NOT EXISTS " + "Candidate" + "(" +
 			        "CANDIDATE_NAME VARCHAR(50))";
 			this.executeUpdate(conn, createCandidate);
-			System.out.println("Created a table");
+			System.out.println("Created Candidate table");
 	    } catch (SQLException e) {
-			System.out.println("ERROR: Could not create the table");
+			System.out.println("ERROR: Could not create Candidate table");
 			e.printStackTrace();
 			return;
 		
@@ -121,10 +121,10 @@ public class VotingDatabase {
 		// Create Votes table
 		try {
 		    String createVotes =
-			        "CREATE TABLE IF NOT EXISTS " + "Candidate" + "(" +
-			        "VOTER_NAME VARCHAR(50)), " +
+			        "CREATE TABLE IF NOT EXISTS " + "Votes" + "(" +
+			        "VOTER_NAME VARCHAR(50), " +
 			        "VOTER_ID INTEGER NOT NULL, " +
-			        "CANDIDATE_NAME VARCHAR(50)) ";
+			        "CANDIDATE_NAME VARCHAR(50))";
 			this.executeUpdate(conn, createVotes);
 			System.out.println("Created Votes table");
 	    } catch (SQLException e) {
