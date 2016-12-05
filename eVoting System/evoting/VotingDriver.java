@@ -21,7 +21,7 @@ public class VotingDriver {
 		//Create a frame
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("eVoting");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);   
+        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);   
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
       
@@ -31,6 +31,7 @@ public class VotingDriver {
         frame.getContentPane().add(p);
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setPreferredSize(new Dimension(1000, 400));
+        
         
        
         
@@ -63,7 +64,8 @@ public class VotingDriver {
 ////////////////
         JPanel p2 = new JPanel(); 
         frame.getContentPane().add(p2);
-        p2.setLayout(null);        
+        p2.setLayout(new BoxLayout(p2, BoxLayout.Y_AXIS));    
+        p2.setPreferredSize(new Dimension(1000, 400));
                 JCheckBox candidate2chebox = new JCheckBox(candidate2.getName());
 
         JCheckBox candidate1chebox = new JCheckBox(candidate1.getName());
@@ -122,7 +124,7 @@ public class VotingDriver {
 								JLabel confirmationMessage = new JLabel("");
 								JLabel confirmationMessage2 = new JLabel("");
 
-				        confirm.addActionListener(new ActionListener() {
+				        nextButton2.addActionListener(new ActionListener() {
 						
 							public void actionPerformed(ActionEvent o) {
 								
@@ -194,6 +196,20 @@ public class VotingDriver {
 					//}
         	
         	}});     
+        
+        edit.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent o) {
+				candidate1chebox.setEnabled(true);
+				candidate2chebox.setEnabled(true);
+				//confirm.setEnabled(false);
+				confirm.setVisible(false);
+				//edit.setEnabled(false);
+				edit.setVisible(false);
+				nextButton2.setVisible(true);
+				nextButton2.setEnabled(true);
+
+			}});
         
    
         greet.setBounds(550, 25, 400, 40);
