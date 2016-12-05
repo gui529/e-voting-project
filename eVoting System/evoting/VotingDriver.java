@@ -198,6 +198,7 @@ public class VotingDriver {
 		
 		nextButton.setBounds(470, 550, 400, 40);
 		nextButton2.setBounds(470, 550, 400, 40);
+		confirm.setBounds(470, 550, 400, 40);
 
 
 
