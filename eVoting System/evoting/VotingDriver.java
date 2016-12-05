@@ -11,10 +11,12 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class VotingDriver {
 	
-	private static void createAndShowGUI() {
+	private static void createAndShowGUI(Candidate candidate1,Candidate candidate2) {
 		//Create a frame
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("eVoting");
@@ -27,16 +29,19 @@ public class VotingDriver {
         frame.getContentPane().add(p);
         p.setLayout(null);
         
+        
         //Labels and fields
         UIManager.put("Label.font", UIManager.getFont("Label.font").deriveFont((float) 30.0));
         UIManager.put("TextField.font", UIManager.getFont("TextField.font").deriveFont((float) 30.0));
         UIManager.put("Button.font", UIManager.getFont("Button.font").deriveFont((float) 30.0));
+        UIManager.put("CheckBox.font", UIManager.getFont("CheckBox.font").deriveFont((float) 30.0));
+
 
         SwingUtilities.updateComponentTreeUI(frame);        
              
-        JTextField voterId_textf = new JTextField(" ");
-        JTextField voterName_textf = new JTextField(" ");
-        JTextField last4ss_textf = new JTextField(" ");
+        JTextField voterId_textf = new JTextField("");
+        JTextField voterName_textf = new JTextField("");
+        JTextField last4ss_textf = new JTextField("");
 
         JLabel greet = new JLabel("eVoting System");       
         JLabel greetmessage = new JLabel("Please type your information and press the <NEXT> button.");
@@ -48,7 +53,37 @@ public class VotingDriver {
         JLabel warningMessage = new JLabel("Voter registration not found.");
         warningMessage.setForeground(Color.RED);
 
+////////////////
+        JPanel p2 = new JPanel(); 
+        frame.getContentPane().add(p2);
+        p2.setLayout(null);        
+                JCheckBox candidate2chebox = new JCheckBox(candidate2.getName());
 
+        JCheckBox candidate1chebox = new JCheckBox(candidate1.getName());
+        candidate1chebox.addChangeListener(new ChangeListener() {
+        	public void stateChanged(ChangeEvent e) {
+        		if (candidate1chebox.isSelected()){
+        			candidate2chebox.setSelected(false); }
+        	}
+        });
+        candidate1chebox.setHorizontalAlignment(SwingConstants.CENTER);
+        candidate2chebox.addChangeListener(new ChangeListener() {
+        	public void stateChanged(ChangeEvent arg0) {
+        		if (candidate2chebox.isSelected()){
+        			candidate1chebox.setSelected(false); }
+        	}
+        });
+        candidate2chebox.setHorizontalAlignment(SwingConstants.CENTER);
+
+        
+        
+        JButton nextButton2 = new JButton("NEXT");
+
+        
+        
+        
+        
+////////////
         
         JButton nextButton = new JButton("NEXT");
         nextButton.addActionListener(new ActionListener() {
@@ -70,10 +105,46 @@ public class VotingDriver {
 						System.out.println("Registration found successfully.");
 	
 						Voter voter = new Voter(voterId);
+						p.setVisible(false);
+						p2.setVisible(true);
+								JLabel confirmationMessage = new JLabel("");
+
+				        nextButton2.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent o) {
+								
+								
+								
+								if (candidate1chebox.isSelected()){
+							        confirmationMessage.setBounds(190, 450, 1000, 40);
+
+									confirmationMessage.setText("Please press <NEXT> to confirm your vote to "+candidate1.getName()+".");
+								
+								}
+								
+								if (candidate2chebox.isSelected()){
+							        confirmationMessage.setBounds(190, 450, 1000, 40);
+
+									confirmationMessage.setText("Please press <NEXT> to confirm your vote to "+candidate2.getName()+".");
+
+								}
+								
+
+
+						               
+						        p2.add(confirmationMessage);
+						        
+					
+						        p2.repaint();
+
+								
+								
+								
+							}
+
+				        });
+
 						
-						//voter.castVote(candidate1, candidate2);
 						
-						//System.out.printf("%s has %d,%n%s has %d%n",candidate1.getName(),candidate1.getVotes(),candidate2.getName(), candidate2.getVotes());
 							
 	
 					}
@@ -104,7 +175,9 @@ public class VotingDriver {
 		greetmessage.setBounds(290, 100, 900, 40);
 		warningMessage.setBounds(470, 630, 900, 40);
 
-		
+		candidate2chebox.setBounds(205, 117, 400, 200);
+		candidate1chebox.setBounds(766, 117, 400, 200);
+
 
         
         voterId.setBounds(100, 250, 900, 40);
@@ -117,6 +190,8 @@ public class VotingDriver {
 		last4ss_textf.setBounds(370, 450, 400, 40);
 		
 		nextButton.setBounds(470, 550, 400, 40);
+		nextButton2.setBounds(470, 550, 400, 40);
+
 
 
 
@@ -134,6 +209,13 @@ public class VotingDriver {
 		p.add(last4ss_textf);
 		
 		p.add(nextButton);
+		p2.setVisible(false);
+		
+		p2.add(candidate2chebox);
+		p2.add(candidate1chebox);
+		p2.add(nextButton2);
+		
+
 
 	}
 
@@ -151,7 +233,7 @@ public class VotingDriver {
 
 			        javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			            public void run() {
-			                createAndShowGUI();
+			                createAndShowGUI(candidate1,candidate2);
 			            }
 			        });
 					
@@ -160,6 +242,4 @@ public class VotingDriver {
 
 	
 	}//end of main
-
-
 }//end of driver
