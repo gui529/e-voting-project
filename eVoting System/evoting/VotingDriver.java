@@ -64,6 +64,7 @@ public class VotingDriver {
         JPanel p2 = new JPanel(); 
         frame.getContentPane().add(p2);
         p2.setLayout(null);        
+        
                 JCheckBox candidate2chebox = new JCheckBox(candidate2.getName());
 
         JCheckBox candidate1chebox = new JCheckBox(candidate1.getName());
@@ -113,9 +114,7 @@ public class VotingDriver {
 
 					
 					
-					if (VotingServer.validateLogin(voterId, name,social))  {
-						System.out.println("Registration found successfully.");
-	
+					if (VotingServer.validateLogin(voterId, name,social))  {	
 						Voter voter = new Voter(voterId);
 						p.setVisible(false);
 						p2.setVisible(true);
