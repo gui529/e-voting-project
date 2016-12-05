@@ -217,9 +217,7 @@ public class VotingDriver {
 			public void actionPerformed(ActionEvent o) {
 				candidate1chebox.setEnabled(true);
 				candidate2chebox.setEnabled(true);
-				//confirm.setEnabled(false);
 				confirm.setVisible(false);
-				//edit.setEnabled(false);
 				edit.setVisible(false);
 				nextButton2.setVisible(true);
 				nextButton2.setEnabled(true);
