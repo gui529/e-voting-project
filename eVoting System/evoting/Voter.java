@@ -38,39 +38,9 @@ public class Voter {
 	 * 
 	 * @param candidate
 	 */
-	public void castVote(Candidate candidate1, Candidate candidate2) {
-		System.out.println("Please choose between the candidates:");
-		System.out.printf("1. %s\n",candidate1.getName());
-		System.out.printf("2. %s\n",candidate2.getName());
-	    Scanner sc = new Scanner(System.in);
-		int Choice = sc.nextInt();
-		chosenCandidate = null;
+	public void castVote(Candidate candidate) {
 		
-	
-		while(Choice != 1 && Choice != 2){
-			System.out.println("Sorry, that is not a valid choice.  Please enter 1 or 2.");
-			Choice = sc.nextInt();
-			}
-			if (Choice ==1){
-				System.out.printf("You have chosen candidate %s, Is this correct?%n", candidate1.getName());
-				chosenCandidate = candidate1;
-			}
-			else if (Choice ==2){
-				System.out.printf("You have chosen candidate %s , Is this correct?%n", candidate2.getName());
-				chosenCandidate = candidate2;
-			}
-		
-		System.out.println("1. YES");
-		System.out.println("2. NO");
-		
-		Choice = sc.nextInt();
-		
-		if (Choice ==1){  //YES
-			confirmVote(chosenCandidate);
-		}
-		if (Choice ==2){  //NO
-			editVote(candidate1,candidate2);
-		}
+		System.out.println("TEST ----Candidate chosen: "+candidate.getName());
 
 	}
 
@@ -84,7 +54,7 @@ public class Voter {
 
 		System.out.println("Repicking Candidate");
 		chosenCandidate = null;
-		castVote(candidate1, candidate2);
+		//castVote(candidate1, candidate2);
 
 		
 		
