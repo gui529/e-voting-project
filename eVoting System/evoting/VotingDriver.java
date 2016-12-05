@@ -83,6 +83,10 @@ public class VotingDriver {
         
         JButton nextButton2 = new JButton("NEXT");
         JButton confirm = new JButton("CONFIRM");
+        JButton edit = new JButton("EDIT");
+        confirm.setVisible(false);
+        edit.setVisible(false);
+        
 
         
         
@@ -115,6 +119,7 @@ public class VotingDriver {
 								JLabel confirmationMessage = new JLabel("");
 
 				        nextButton2.addActionListener(new ActionListener() {
+						
 							public void actionPerformed(ActionEvent o) {
 								
 								
@@ -122,17 +127,23 @@ public class VotingDriver {
 								if (candidate1chebox.isSelected()){
 							        confirmationMessage.setBounds(190, 450, 1000, 40);
 
-									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate1.getName()+".");
+									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate1.getName()+", \n or <EDIT> to change.");
 									nextButton2.setVisible(false);
+									candidate1chebox.setEnabled(false);
+									candidate2chebox.setEnabled(false);
 									confirm.setVisible(true);
+									edit.setVisible(true);
 								}
 								
 								if (candidate2chebox.isSelected()){
 							        confirmationMessage.setBounds(190, 450, 1000, 40);
 
-									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate2.getName()+".");
+									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate2.getName()+", \n or <EDIT> to change.");
+									candidate2chebox.setEnabled(false);
+									candidate1chebox.setEnabled(false);
 									nextButton2.setVisible(false);
 									confirm.setVisible(true);
+									edit.setVisible(true);
 								}
 								
 
@@ -199,6 +210,7 @@ public class VotingDriver {
 		nextButton.setBounds(470, 550, 400, 40);
 		nextButton2.setBounds(470, 550, 400, 40);
 		confirm.setBounds(470, 550, 400, 40);
+		edit.setBounds(470, 500, 400, 40);
 
 
 
@@ -225,6 +237,7 @@ public class VotingDriver {
 		p2.add(candidate1chebox);
 		p2.add(nextButton2);
 		p2.add(confirm);
+		p2.add(edit);
 		frame.add(p2);
 		
 
