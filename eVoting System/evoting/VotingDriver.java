@@ -122,7 +122,7 @@ public class VotingDriver {
 								JLabel confirmationMessage = new JLabel("");
 								JLabel confirmationMessage2 = new JLabel("");
 
-				        nextButton2.addActionListener(new ActionListener() {
+				        confirm.addActionListener(new ActionListener() {
 						
 							public void actionPerformed(ActionEvent o) {
 								
