@@ -92,13 +92,13 @@ public class VotingDatabase {
 		try {
 		    String createVoter =
 			        "CREATE TABLE IF NOT EXISTS " + "Voter" + "(" +
-			        "NAME VARCHAR(50), " +
+			        "VOTER_NAME VARCHAR(50), " +
 			        "LAST_4_SOCIAL INTEGER NOT NULL, " +
 			        "VOTER_ID INTEGER NOT NULL)";
 			this.executeUpdate(conn, createVoter);
-			System.out.println("Created a table");
+			System.out.println("Created Voter table");
 	    } catch (SQLException e) {
-			System.out.println("ERROR: Could not create the table");
+			System.out.println("ERROR: Could not create Voter table");
 			e.printStackTrace();
 			return;
 		
@@ -108,11 +108,27 @@ public class VotingDatabase {
 		try {
 		    String createCandidate =
 			        "CREATE TABLE IF NOT EXISTS " + "Candidate" + "(" +
-			        "NAME VARCHAR(50))";
+			        "CANDIDATE_NAME VARCHAR(50))";
 			this.executeUpdate(conn, createCandidate);
-			System.out.println("Created a table");
+			System.out.println("Created Candidate table");
 	    } catch (SQLException e) {
-			System.out.println("ERROR: Could not create the table");
+			System.out.println("ERROR: Could not create Candidate table");
+			e.printStackTrace();
+			return;
+		
+	    }
+		
+		// Create Votes table
+		try {
+		    String createVotes =
+			        "CREATE TABLE IF NOT EXISTS " + "Votes" + "(" +
+			        "VOTER_NAME VARCHAR(50), " +
+			        "VOTER_ID INTEGER NOT NULL, " +
+			        "CANDIDATE_NAME VARCHAR(50))";
+			this.executeUpdate(conn, createVotes);
+			System.out.println("Created Votes table");
+	    } catch (SQLException e) {
+			System.out.println("ERROR: Could not create the Votes table");
 			e.printStackTrace();
 			return;
 		
@@ -120,26 +136,26 @@ public class VotingDatabase {
 		
 		
 		
-		// Inserts votes into the Voter table 
+		// Inserts voters into the Voter table 
 		try {
 		   String insertVoter1 = 
 				    "INSERT INTO Voter " + 		   
-		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
 		            "VALUES " +								
 				    "('Diane Verville', 4533, 768342)"; 
 		   String insertVoter2 = 
 				    "INSERT INTO Voter " + 		   
-		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
 		            "VALUES " +								
 				    "('Nadia Lozier', 6421, 492342)";
 		   String insertVoter3 = 
 				    "INSERT INTO Voter " + 		   
-		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
 		            "VALUES " +								
 				    "('Lemuel Mosbey', 1356, 134233)";
 		   String insertVoter4 = 
 				    "INSERT INTO Voter " + 		   
-		            "(NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
 		            "VALUES " +								
 				    "('Stacee Shuler', 9034, 6323494)";
 		   this.executeUpdate(conn, insertVoter1);
@@ -158,12 +174,12 @@ public class VotingDatabase {
 				try {
 				   String insertCandidate1 = 
 						    "INSERT INTO Candidate " + 		   
-				            "(NAME) " + 				
+				            "(CANDIDATE_NAME) " + 				
 				            "VALUES " +								
 						    "('Henry Brown')"; 
 				   String insertCandidate2 = 
 						    "INSERT INTO Candidate " + 		   
-				            "(NAME) " + 				
+				            "(CANDIDATE_NAME) " + 				
 				            "VALUES " +								
 						    "('Joyce Smalls')";
 				   this.executeUpdate(conn, insertCandidate1);
@@ -171,11 +187,34 @@ public class VotingDatabase {
 			
 				   System.out.println("Inserted into Candidate table");
 			     } catch (SQLException f) {
-					System.out.println("ERROR: Could not insert into table");
+					System.out.println("ERROR: Could not insert into Candidate table");
 					f.printStackTrace();
 					return;
 			     
-			     }	
+			     }
+				
+	     // Inserts votes into the Votes table 
+//				try {
+//					String insertVote1 = 
+//							"INSERT INTO Votes " + 		             //I don't think we will need this since the user creates the votes
+//									"(CANDIDATE_NAME) " + 				
+//									"VALUES " +								
+//									"('Henry Brown')"; 
+//					String insertVote2 = 
+//							"INSERT INTO Votes " + 		   
+//									"(CANDIDATE_NAME) " + 				
+//									"VALUES " +								
+//									"('Joyce Smalls')";
+//					this.executeUpdate(conn, insertVote1);
+//					this.executeUpdate(conn, insertVote2);
+//
+//					System.out.println("Inserted into Votes table");
+//				} catch (SQLException f) {
+//					System.out.println("ERROR: Could not insert into Votes table");
+//					f.printStackTrace();
+//					return;
+//
+//				}	
 		
 		
 		// Display the table
