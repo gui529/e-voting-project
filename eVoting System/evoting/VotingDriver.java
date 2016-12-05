@@ -50,6 +50,9 @@ public class VotingDriver {
         JLabel lastName = new JLabel("Last name:");
         JLabel voterId = new JLabel("Voter ID number:");
         JLabel last4ss = new JLabel("Last four of social:");
+        ImageIcon trump = new ImageIcon("imgs/photo.jpg");
+        JLabel trumpLabel = new JLabel();
+        trumpLabel.setIcon(trump);
         
         JLabel warningMessage = new JLabel("Voter registration not found.");
         warningMessage.setForeground(Color.RED);
@@ -61,6 +64,8 @@ public class VotingDriver {
         frame.getContentPane().add(p2);
         p2.setLayout(new BoxLayout(p2, BoxLayout.Y_AXIS));
         p2.setPreferredSize(new Dimension(1000, 400));
+        
+        
 
                 JCheckBox candidate2chebox = new JCheckBox(candidate2.getName());
 
@@ -222,6 +227,7 @@ public class VotingDriver {
 		warningMessage.setBounds(470, 630, 900, 40);
 
 		candidate2chebox.setBounds(205, 117, 400, 200);
+		trumpLabel.setBounds(205, 130, 400, 200);
 		candidate1chebox.setBounds(766, 117, 400, 200);
 
 
@@ -262,6 +268,7 @@ public class VotingDriver {
 		p2.setVisible(false);
 		
 		p2.add(candidate2chebox);
+		p2.add(trumpLabel);
 		p2.add(candidate1chebox);
 		p2.add(nextButton2);
 		p2.add(confirm);
