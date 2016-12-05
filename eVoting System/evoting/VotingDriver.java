@@ -22,12 +22,14 @@ public class VotingDriver {
         JFrame frame = new JFrame("eVoting");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);   
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        frame.pack();
+      
         
         //create a panel
         JPanel p = new JPanel(); 
         frame.getContentPane().add(p);
-        p.setLayout(null);
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setPreferredSize(new Dimension(1000, 400));
         
         
         //Labels and fields
@@ -52,6 +54,8 @@ public class VotingDriver {
         
         JLabel warningMessage = new JLabel("Voter registration not found.");
         warningMessage.setForeground(Color.RED);
+        
+     
 
 ////////////////
         JPanel p2 = new JPanel(); 
@@ -78,6 +82,7 @@ public class VotingDriver {
         
         
         JButton nextButton2 = new JButton("NEXT");
+        JButton confirm = new JButton("CONFIRM");
 
         
         
@@ -117,15 +122,17 @@ public class VotingDriver {
 								if (candidate1chebox.isSelected()){
 							        confirmationMessage.setBounds(190, 450, 1000, 40);
 
-									confirmationMessage.setText("Please press <NEXT> to confirm your vote to "+candidate1.getName()+".");
-								
+									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate1.getName()+".");
+									nextButton2.setVisible(false);
+									confirm.setVisible(true);
 								}
 								
 								if (candidate2chebox.isSelected()){
 							        confirmationMessage.setBounds(190, 450, 1000, 40);
 
-									confirmationMessage.setText("Please press <NEXT> to confirm your vote to "+candidate2.getName()+".");
-
+									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate2.getName()+".");
+									nextButton2.setVisible(false);
+									confirm.setVisible(true);
 								}
 								
 
@@ -199,21 +206,25 @@ public class VotingDriver {
 		//add all labels and textfields
 		p.add(greet);
 		p.add(greetmessage);
+	    p.add(lastName);
+        p.add(voterName_textf);
+        p.add(voterId);
+        p.add(voterId_textf);
+        p.add(last4ss);
+        p.add(last4ss_textf);
+        frame.add(p);
+        frame.pack();
+        frame.setVisible(true);
 		
-		p.add(lastName);
-		p.add(voterId);
-		p.add(last4ss);
-		
-		p.add(voterId_textf);
-		p.add(voterName_textf);
-		p.add(last4ss_textf);
-		
+        
 		p.add(nextButton);
 		p2.setVisible(false);
 		
 		p2.add(candidate2chebox);
 		p2.add(candidate1chebox);
 		p2.add(nextButton2);
+		p2.add(confirm);
+		frame.add(p2);
 		
 
 
