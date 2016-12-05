@@ -12,6 +12,10 @@ import javax.swing.event.ChangeEvent;
 
 public class VotingDriver {
 	
+		static Candidate chosenCandidate;
+	
+	
+	
 	private static void createAndShowGUI(Candidate candidate1,Candidate candidate2) {
 		//Create a frame
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -95,9 +99,11 @@ public class VotingDriver {
         
 
         
-        
-        
-        
+    	String voterID = voterId_textf.getText();
+		String name = voterName_textf.getText();
+		String social = last4ss_textf.getText();    
+   		Voter voter = new Voter(voterID);
+
 ////////////
         
         JButton nextButton = new JButton("NEXT");
@@ -105,18 +111,16 @@ public class VotingDriver {
         	public void actionPerformed(ActionEvent e) {
 				VotingServer VotingServer = new VotingServer();
 				
-				String voterId = voterId_textf.getText();
-				String name = voterName_textf.getText();
-				String social = last4ss_textf.getText();
 
-				
+
+
 				
 				try {
 
 					
 					
-					if (VotingServer.validateLogin(voterId, name,social))  {	
-						Voter voter = new Voter(voterId);
+					if (VotingServer.validateLogin(voterID, name,social))  {	
+
 						p.setVisible(false);
 						p2.setVisible(true);
 								JLabel confirmationMessage = new JLabel("");
@@ -138,6 +142,8 @@ public class VotingDriver {
 									candidate2chebox.setEnabled(false);
 									confirm.setVisible(true);
 									edit.setVisible(true);
+									chosenCandidate = candidate1;
+									
 								}
 								
 								if (candidate2chebox.isSelected()){
@@ -150,6 +156,7 @@ public class VotingDriver {
 									nextButton2.setVisible(false);
 									confirm.setVisible(true);
 									edit.setVisible(true);
+									chosenCandidate = candidate2;
 								}
 								
 
@@ -205,6 +212,7 @@ public class VotingDriver {
 
 		        p2.add(confirmMessage);
 		        p2.repaint();
+		        voter.castVote(chosenCandidate);
 				
 				
 			}
@@ -245,10 +253,6 @@ public class VotingDriver {
 		nextButton2.setBounds(470, 550, 400, 40);
 		confirm.setBounds(470, 550, 400, 40);
 		edit.setBounds(470, 500, 400, 40);
-
-
-
-
         
 		//add all labels and textfields
 		p.add(greet);
@@ -274,8 +278,6 @@ public class VotingDriver {
 		p2.add(confirm);
 		p2.add(edit);
 		frame.add(p2);
-		
-
 
 	}
 
