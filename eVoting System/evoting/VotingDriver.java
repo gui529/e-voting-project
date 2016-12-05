@@ -1,5 +1,6 @@
 package evoting;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -31,6 +32,8 @@ public class VotingDriver {
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setPreferredSize(new Dimension(1000, 400));
         
+       
+        
         
         //Labels and fields
         UIManager.put("Label.font", UIManager.getFont("Label.font").deriveFont((float) 30.0));
@@ -41,9 +44,9 @@ public class VotingDriver {
 
         SwingUtilities.updateComponentTreeUI(frame);        
              
-        JTextField voterId_textf = new JTextField("");
-        JTextField voterName_textf = new JTextField("");
-        JTextField last4ss_textf = new JTextField("");
+        JTextField voterId_textf = new JTextField("56789");
+        JTextField voterName_textf = new JTextField("Costa");
+        JTextField last4ss_textf = new JTextField("1234");
 
         JLabel greet = new JLabel("eVoting System");       
         JLabel greetmessage = new JLabel("Please type your information and press the <NEXT> button.");
@@ -117,6 +120,7 @@ public class VotingDriver {
 						p.setVisible(false);
 						p2.setVisible(true);
 								JLabel confirmationMessage = new JLabel("");
+								JLabel confirmationMessage2 = new JLabel("");
 
 				        nextButton2.addActionListener(new ActionListener() {
 						
@@ -126,8 +130,9 @@ public class VotingDriver {
 								
 								if (candidate1chebox.isSelected()){
 							        confirmationMessage.setBounds(190, 450, 1000, 40);
-
-									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate1.getName()+", \n or <EDIT> to change.");
+							        confirmationMessage2.setBounds(190, 475, 1000, 40);
+									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate1.getName());
+									confirmationMessage2.setText("or <EDIT> to change");
 									nextButton2.setVisible(false);
 									candidate1chebox.setEnabled(false);
 									candidate2chebox.setEnabled(false);
@@ -137,8 +142,9 @@ public class VotingDriver {
 								
 								if (candidate2chebox.isSelected()){
 							        confirmationMessage.setBounds(190, 450, 1000, 40);
-
-									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate2.getName()+", \n or <EDIT> to change.");
+							        confirmationMessage2.setBounds(190, 475, 1000, 40);
+									confirmationMessage.setText("Please press <CONFIRM> to confirm your vote to "+candidate2.getName());
+									confirmationMessage2.setText("or <EDIT> to change");
 									candidate2chebox.setEnabled(false);
 									candidate1chebox.setEnabled(false);
 									nextButton2.setVisible(false);
@@ -150,6 +156,7 @@ public class VotingDriver {
 
 						               
 						        p2.add(confirmationMessage);
+						        p2.add(confirmationMessage2);
 						        
 					
 						        p2.repaint();
