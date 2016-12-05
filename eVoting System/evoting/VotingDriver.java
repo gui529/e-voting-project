@@ -1,15 +1,10 @@
 package evoting;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
@@ -63,7 +58,9 @@ public class VotingDriver {
 ////////////////
         JPanel p2 = new JPanel(); 
         frame.getContentPane().add(p2);
-        p2.setLayout(null);        
+        p2.setLayout(new BoxLayout(p2, BoxLayout.Y_AXIS));
+        p2.setPreferredSize(new Dimension(1000, 400));
+
         
                 JCheckBox candidate2chebox = new JCheckBox(candidate2.getName());
 
@@ -100,8 +97,7 @@ public class VotingDriver {
         
         JButton nextButton = new JButton("NEXT");
         nextButton.addActionListener(new ActionListener() {
-        	@SuppressWarnings("finally")
-			public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent e) {
 				VotingServer VotingServer = new VotingServer();
 				
 				String voterId = voterId_textf.getText();
@@ -121,7 +117,7 @@ public class VotingDriver {
 								JLabel confirmationMessage = new JLabel("");
 								JLabel confirmationMessage2 = new JLabel("");
 
-				        confirm.addActionListener(new ActionListener() {
+				        nextButton2.addActionListener(new ActionListener() {
 						
 							public void actionPerformed(ActionEvent o) {
 								
@@ -194,6 +190,20 @@ public class VotingDriver {
         	
         	}});     
         
+        
+        confirm.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent o) {
+				p2.removeAll();
+		        JLabel confirmMessage = new JLabel("Thank you for voting! Your vote was recorded.");
+				confirmMessage.setBounds(200, 117, 800, 200);
+
+		        p2.add(confirmMessage);
+		        p2.repaint();
+				
+				
+			}
+        });     
    
         greet.setBounds(550, 25, 400, 40);
 		greetmessage.setBounds(290, 100, 900, 40);
