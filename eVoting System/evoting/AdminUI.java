@@ -16,46 +16,61 @@ import javax.swing.UIManager;
 
 public class AdminUI {
 	JFrame adminFrame = new JFrame();
-	JPanel adminPanel = new JPanel();
+	JPanel adminWelcomePanel = new JPanel();
+	JPanel adminFunPanel = new JPanel();
 	
-	JLabel adminWelcomeLabel = new JLabel("Welcome, Admin.");
+	//Admin Welcome Panel GUI
+	JLabel adminWelcomePanelLabel = new JLabel("Admin Login.");
 	JLabel adminIDLabel = new JLabel("Enter Admin ID");
 	JLabel adminPassLabel = new JLabel("Enter Admin Password");
 	JTextField adminIDTextBox = new JTextField();
 	JTextField adminPassTextBox = new JTextField();
 	JButton adminLoginButton = new JButton("LOGIN");
 	
+	//Admin Function Panel GUI
+	JLabel adminFunPanelLabel = new JLabel("Welcome, Admin");
+	JButton adminLogoutButton = new JButton("LOGOUT");
+	
+	
+	
 	
 	public AdminUI(){
 		
-		adminPanel.setLayout(new BoxLayout(adminPanel, BoxLayout.Y_AXIS));
-		adminPanel.add(adminWelcomeLabel);
-		adminPanel.add(adminIDLabel);
-		adminPanel.add(adminIDTextBox);
-		adminPanel.add(adminPassLabel);
-		adminPanel.add(adminPassTextBox);
-		adminPanel.add(adminLoginButton);
-		adminPanel.setPreferredSize(new Dimension(1000, 400));
+		adminWelcomePanel.setLayout(new BoxLayout(adminWelcomePanel, BoxLayout.Y_AXIS));
+		adminWelcomePanel.add(adminWelcomePanelLabel);
+		adminWelcomePanel.add(adminIDLabel);
+		adminWelcomePanel.add(adminIDTextBox);
+		adminWelcomePanel.add(adminPassLabel);
+		adminWelcomePanel.add(adminPassTextBox);
+		adminWelcomePanel.add(adminLoginButton);
+		adminWelcomePanel.setPreferredSize(new Dimension(1000, 400));
 		
-		adminFrame.getContentPane().add(adminPanel);
+		adminFrame.getContentPane().add(adminWelcomePanel);
 		adminFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		adminFrame.pack();
 		adminFrame.setVisible(true);
 		
+		adminFunPanel.setLayout(new BoxLayout(adminFunPanel, BoxLayout.Y_AXIS));
+		adminFunPanel.add(adminFunPanelLabel);
+		adminFunPanel.add(adminLogoutButton);
+		
+		adminFrame.getContentPane().add(adminFunPanel);
 		
 		
-		String adminID = adminIDTextBox.getText();
-		String adminPass = adminPassTextBox.getText();
-	
+		
+		
 	adminLoginButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent o) {
+
+    		String adminID = adminIDTextBox.getText();
+    		String adminPass = adminPassTextBox.getText();
         	VotingServer VS = new VotingServer();
-        	
+        	System.out.println("try 2" + adminID + " " + adminPass);
         		
         	try {
 				if(VS.validateAdminLogin(adminID, adminPass)){
-					adminFrame.setVisible(false);
-					adminPanel.setVisible(false);
+					adminWelcomePanel.setVisible(false);
+					adminFunPanel.setVisible(true);
 				}
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -67,6 +82,17 @@ public class AdminUI {
         }
         
 	});
+	
+	
+	adminLogoutButton.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent o){
+			adminWelcomePanel.setVisible(true);
+			adminFunPanel.setVisible(false);
+			adminIDTextBox.setText("");
+			adminPassTextBox.setText("");
+		}
+	});
+	
 	}
 }
 	

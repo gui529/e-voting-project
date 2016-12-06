@@ -96,7 +96,7 @@ public class VotingServer {
 		    	
 		    }
 
-		    if (adminInfo[1].contains(adminID) && adminInfo[2].contains(adminPass)  ){
+		    if (adminInfo[0].contains(adminID) && adminInfo[1].contains(adminPass)  ){
 		    	return true;
 		    }
 			
