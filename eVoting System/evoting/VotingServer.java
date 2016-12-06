@@ -15,6 +15,7 @@ public class VotingServer {
 	private int voterID;
 	private int[] officialTally = new int[8];
 	String[] voterInfo = new String [4];
+	String[] adminInfo = new String[4];
 
 	protected void getTally() {
 		throw new UnsupportedOperationException();
@@ -63,21 +64,52 @@ public class VotingServer {
 		    	return true;
 		    }
 			
-		}
-		    
-		    
-		    
-
-		    
-		    
+		} 
 		}
 		catch (IOException e){
 			e.printStackTrace();
 		}
 		
 		return false;
-		
 	}
+	//The following validates the Admin's Login
+	public boolean validateAdminLogin(String adminID, String adminPass) throws FileNotFoundException, IOException {
+		try{
+			
+			if (adminID.equals("") || adminPass.equals("")){
+				return false;
+			}
+			
+		boolean done = false;
+		br = new BufferedReader(new FileReader("adminList.txt")); 
+		    
+		String line;// = br.readLine();
+
+		while ((line = br.readLine()) != null){
+	       // line = br.readLine();
+	        
+		    StringTokenizer st = new StringTokenizer(line);
+		    int i =0;
+		    while(st.hasMoreTokens()){
+		    	adminInfo[i] = st.nextToken(); 
+		    	i++;
+		    	
+		    }
+
+		    if (adminInfo[1].contains(adminID) && adminInfo[2].contains(adminPass)  ){
+		    	return true;
+		    }
+			
+		} 
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	
 	
 	
 	

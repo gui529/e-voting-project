@@ -1,16 +1,19 @@
 package evoting;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-public class VotingDriver {
+public class VotingDriver{
 	
 		static Candidate chosenCandidate;
 	
@@ -54,9 +57,7 @@ public class VotingDriver {
         JLabel lastName = new JLabel("Last name:");
         JLabel voterId = new JLabel("Voter ID number:");
         JLabel last4ss = new JLabel("Last four of social:");
-        ImageIcon trump = new ImageIcon("imgs/photo.jpg");
-        JLabel trumpLabel = new JLabel();
-        trumpLabel.setIcon(trump);
+       
         
         JLabel warningMessage = new JLabel("Voter registration not found.");
         warningMessage.setForeground(Color.RED);
@@ -96,6 +97,8 @@ public class VotingDriver {
         JButton edit = new JButton("EDIT");
         confirm.setVisible(false);
         edit.setVisible(false);
+        JLabel adminLabel = new JLabel("admin?");
+        adminLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
 
         
@@ -129,9 +132,6 @@ public class VotingDriver {
 				        nextButton2.addActionListener(new ActionListener() {
 						
 							public void actionPerformed(ActionEvent o) {
-								
-								
-								
 								if (candidate1chebox.isSelected()){
 							        confirmationMessage.setBounds(190, 450, 1000, 40);
 							        confirmationMessage2.setBounds(190, 475, 1000, 40);
@@ -167,18 +167,11 @@ public class VotingDriver {
 						        
 					
 						        p2.repaint();
-
-								
-								
-								
+	
 							}
 
 				        });
 
-						
-						
-							
-	
 					}
 					else
 					{
@@ -229,13 +222,30 @@ public class VotingDriver {
 
 			}});
         
+        adminLabel.addMouseListener(new MouseAdapter()  
+        {  
+            public void mouseClicked(MouseEvent e)  
+            {  
+               AdminUI adminui = new AdminUI();
+               frame.setVisible(false);
+               adminui.adminFrame.setVisible(true);
+            }  
+            
+            
+        });
+        
+        
+        
+        
+       
+        
    
         greet.setBounds(550, 25, 400, 40);
+        adminLabel.setBounds(650, 25, 250, 40);
 		greetmessage.setBounds(290, 100, 900, 40);
 		warningMessage.setBounds(470, 630, 900, 40);
 
 		candidate2chebox.setBounds(205, 117, 400, 200);
-		trumpLabel.setBounds(205, 130, 400, 200);
 		candidate1chebox.setBounds(766, 117, 400, 200);
 
 
@@ -263,6 +273,7 @@ public class VotingDriver {
         p.add(voterId_textf);
         p.add(last4ss);
         p.add(last4ss_textf);
+		p.add(adminLabel);
         frame.add(p);
         frame.pack();
         frame.setVisible(true);
@@ -272,7 +283,6 @@ public class VotingDriver {
 		p2.setVisible(false);
 		
 		p2.add(candidate2chebox);
-		p2.add(trumpLabel);
 		p2.add(candidate1chebox);
 		p2.add(nextButton2);
 		p2.add(confirm);
