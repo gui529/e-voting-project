@@ -97,8 +97,11 @@ public class VotingDriver{
         JButton edit = new JButton("EDIT");
         confirm.setVisible(false);
         edit.setVisible(false);
-        JLabel adminLabel = new JLabel("admin?");
-        adminLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        JButton adminButton = new JButton("admin?");
+        adminButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        nextButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        confirm.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        edit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
 
         
@@ -110,6 +113,7 @@ public class VotingDriver{
 ////////////
         
         JButton nextButton = new JButton("NEXT");
+        nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         nextButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				VotingServer VotingServer = new VotingServer();
@@ -222,7 +226,7 @@ public class VotingDriver{
 
 			}});
         
-        adminLabel.addMouseListener(new MouseAdapter()  
+        adminButton.addMouseListener(new MouseAdapter()  
         {  
             public void mouseClicked(MouseEvent e)  
             {  
@@ -241,7 +245,7 @@ public class VotingDriver{
         
    
         greet.setBounds(550, 25, 400, 40);
-        adminLabel.setBounds(650, 25, 250, 40);
+        adminButton.setBounds(650, 25, 250, 40);
 		greetmessage.setBounds(290, 100, 900, 40);
 		warningMessage.setBounds(470, 630, 900, 40);
 
@@ -273,7 +277,7 @@ public class VotingDriver{
         p.add(voterId_textf);
         p.add(last4ss);
         p.add(last4ss_textf);
-		p.add(adminLabel);
+		p.add(adminButton);
         frame.add(p);
         frame.pack();
         frame.setVisible(true);
