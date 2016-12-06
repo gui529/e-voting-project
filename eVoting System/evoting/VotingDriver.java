@@ -1,6 +1,7 @@
 package evoting;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
@@ -19,7 +20,12 @@ public class VotingDriver{
 	
 	
 	
-	private static void createAndShowGUI(Candidate candidate1,Candidate candidate2) {
+	public void createAndShowGUI() {
+		Candidate candidate1 = new Candidate();
+		Candidate candidate2 = new Candidate();
+
+		candidate1.setName("Henry Brown");
+		candidate2.setName("Joyce Smalls");
 		//Create a frame
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("eVoting");
@@ -97,7 +103,7 @@ public class VotingDriver{
         JButton edit = new JButton("EDIT");
         confirm.setVisible(false);
         edit.setVisible(false);
-        JButton adminButton = new JButton("admin?");
+        JButton adminButton = new JButton("ADMIN");
         adminButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         nextButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         confirm.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -209,7 +215,26 @@ public class VotingDriver{
 
 		        p2.add(confirmMessage);
 		        p2.repaint();
-		        voter.castVote(chosenCandidate);
+
+				int delay=5000;// wait for second
+
+				Timer timer = new Timer(delay, new AbstractAction() {
+				    @Override
+				    public void actionPerformed(ActionEvent ae) {
+				        //action that you want performed 
+
+				        voter.castVote(chosenCandidate);
+		            	VotingDriver GUI = new VotingDriver(); //createAndShowGUI(candidate1,candidate2);
+		            	GUI.createAndShowGUI();
+				    }
+				});
+				timer.setRepeats(false);//the timer should only go off once
+				timer.start();
+				
+				
+				
+
+
 				
 				
 			}
@@ -246,6 +271,7 @@ public class VotingDriver{
    
         greet.setBounds(550, 25, 400, 40);
         adminButton.setBounds(650, 25, 250, 40);
+
 		greetmessage.setBounds(290, 100, 900, 40);
 		warningMessage.setBounds(470, 630, 900, 40);
 
@@ -277,13 +303,14 @@ public class VotingDriver{
         p.add(voterId_textf);
         p.add(last4ss);
         p.add(last4ss_textf);
-		p.add(adminButton);
         frame.add(p);
         frame.pack();
         frame.setVisible(true);
 		
         
 		p.add(nextButton);
+		p.add(adminButton);
+
 		p2.setVisible(false);
 		
 		p2.add(candidate2chebox);
@@ -309,7 +336,8 @@ public class VotingDriver{
 
 			        javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			            public void run() {
-			                createAndShowGUI(candidate1,candidate2);
+			            	VotingDriver GUI = new VotingDriver(); //createAndShowGUI(candidate1,candidate2);
+			            	GUI.createAndShowGUI();
 			            }
 			        });
 					

@@ -105,6 +105,12 @@ public class AdminUI {
 			adminWelcomePanel.setVisible(false);
 			adminIDTextBox.setText("");
 			adminPassTextBox.setText("");
+			adminFrame.dispose();
+        	VotingDriver GUI = new VotingDriver(); //createAndShowGUI(candidate1,candidate2);
+        	GUI.createAndShowGUI();
+        	
+			
+			
 		}
 	});
 	
@@ -115,6 +121,8 @@ public class AdminUI {
 			adminFunPanel.setVisible(false);
 			adminIDTextBox.setText("");
 			adminPassTextBox.setText("");
+
+
 		}
 	});
 	
