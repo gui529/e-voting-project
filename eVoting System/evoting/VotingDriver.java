@@ -38,7 +38,7 @@ public class VotingDriver{
         JPanel p = new JPanel(); 
         frame.getContentPane().add(p);
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-        p.setPreferredSize(new Dimension(1000, 400));
+        p.setPreferredSize(new Dimension(1000, 450));
         
         
        
