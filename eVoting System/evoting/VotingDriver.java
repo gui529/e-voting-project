@@ -17,6 +17,10 @@ import javax.swing.event.ChangeEvent;
 public class VotingDriver{
 	
 		static Candidate chosenCandidate;
+		String voterID;
+		String name;
+		String social;
+		Voter voter;
 	
 	
 	
@@ -53,9 +57,9 @@ public class VotingDriver{
 
         SwingUtilities.updateComponentTreeUI(frame);        
              
-        JTextField voterId_textf = new JTextField("56789");
-        JTextField voterName_textf = new JTextField("Costa");
-        JTextField last4ss_textf = new JTextField("1234");
+        JTextField voterId_textf = new JTextField("");
+        JTextField voterName_textf = new JTextField("");
+        JTextField last4ss_textf = new JTextField("");
 
         JLabel greet = new JLabel("eVoting System");       
         JLabel greetmessage = new JLabel("Please type your information and press the <NEXT> button.");
@@ -110,11 +114,11 @@ public class VotingDriver{
         edit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
 
-        
-    	String voterID = voterId_textf.getText();
-		String name = voterName_textf.getText();
-		String social = last4ss_textf.getText();    
-   		Voter voter = new Voter(voterID);
+        VotingServer VotingServer = new VotingServer();
+		   
+		
+    	 
+   		
 
 ////////////
         
@@ -122,9 +126,14 @@ public class VotingDriver{
         nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         nextButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-				VotingServer VotingServer = new VotingServer();
-				
-
+        		String voterID = voterId_textf.getText();
+        		String name = voterName_textf.getText();
+        		String social = last4ss_textf.getText();   
+        		voter = new Voter(voterID);
+        		
+        		System.out.println("voter name: " + name);
+        		System.out.println("voter ID: " + voterID);
+        		System.out.println("voter social: " + social);
 
 
 				
@@ -132,12 +141,14 @@ public class VotingDriver{
 
 					
 					
-					if (VotingServer.validateLogin(voterID, name,social))  {	
+					if (VotingServer.validateLogin(voterID, name, social))  {	
 
 						p.setVisible(false);
 						p2.setVisible(true);
 								JLabel confirmationMessage = new JLabel("");
 								JLabel confirmationMessage2 = new JLabel("");
+								
+								
 
 				        nextButton2.addActionListener(new ActionListener() {
 						
@@ -185,11 +196,15 @@ public class VotingDriver{
 					}
 					else
 					{
-						p.add(warningMessage);
-						p.repaint();
+						
+							voterId_textf.setText("");
+			        		voterName_textf.setText("");
+			        		last4ss_textf.setText("");
+							JOptionPane.showMessageDialog(p, "Invalid Login Credentials.");
+						}
 						
 						
-					} }
+					} 
 					
 					catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
@@ -224,6 +239,7 @@ public class VotingDriver{
 				        //action that you want performed 
 
 				        voter.castVote(chosenCandidate);
+				        frame.dispose();
 		            	VotingDriver GUI = new VotingDriver(); //createAndShowGUI(candidate1,candidate2);
 		            	GUI.createAndShowGUI();
 				    }
