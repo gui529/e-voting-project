@@ -112,11 +112,7 @@ public class VotingDatabase {
 		}
 		
 		// Create VOTING Schema
-		
-		
-
-		// Create Voter table
-		
+				
 		try {
 		    String createSchema =
 			        "CREATE SCHEMA IF NOT EXISTS VOTING";
@@ -128,6 +124,9 @@ public class VotingDatabase {
 			return;
 		
 	    }
+		
+		
+		// Create voter table
 		
 		try {
 		    String createVoter =
