@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
@@ -278,7 +280,63 @@ public class VotingDriver{
             
             
         });
+        //The following is taken from http://stackoverflow.com/questions/10586395/jtextfield-how-to-limit-the-number-of-charaters
+        int IDmax = 10;
+        voterId_textf.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                int a =voterId_textf.getText().length();
+                if(a >= IDmax)
+                {
+                    e.consume();
+                }
+                //Only take numbers:
+                if (!((c >= '0') && (c <= '9') || (c ==   KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE)
+                       )) {
+                   
+                    e.consume();
+                }
+            }
+           });
         
+        int SSmax = 4;
+        last4ss_textf.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                int a =last4ss_textf.getText().length();
+                if(a >= SSmax)
+                {
+                    e.consume();
+                }
+                //Only take numbers:
+                if (!((c >= '0') && (c <= '9') || (c ==   KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE)
+                       )) {
+                   
+                    e.consume();
+                }
+            }
+           });
+        
+        
+        int NameMax = 16;
+		voterName_textf.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+            	char c = e.getKeyChar();
+                int a = voterName_textf.getText().length();
+                if(a >= NameMax)
+                {
+                    e.consume();
+                }
+                if (!((c >= 'A') && (c <= 'z') || (c ==   KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE)
+                       )) {
+                   
+                    e.consume();
+                }
+            }
+           });
         
         
         
