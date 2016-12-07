@@ -13,6 +13,8 @@ import java.util.Properties;
  This class instantiates our voting database
  */
 
+//Code taken from DBdemo.java
+
 public class VotingDatabase {
 
 	/** The name of the MySQL account to use (or empty for anonymous) */
@@ -30,8 +32,7 @@ public class VotingDatabase {
 	/** The name of the database we are testing with (this default is installed with MySQL) */
 	private final String dbName = "voting?autoReconnect=true&useSSL=false"; //added this because of SSL error
 	
-	/** The name of the table we are testing with */
-	private final String tableName = "Voter";
+
 	
 	/**
 	 * Get a new database connection
@@ -72,7 +73,7 @@ public class VotingDatabase {
 	}
 	
 	/**
-	 * Connect to MySQL and do some stuff.
+	 * Connect to MySQL, create our tables, and store our votes
 	 */
 	public void run() {
 
@@ -193,32 +194,33 @@ public class VotingDatabase {
 			     
 			     }
 				
-	     // Inserts votes into the Votes table 
-//				try {
-//					String insertVote1 = 
-//							"INSERT INTO Votes " + 		             //I don't think we will need this since the user creates the votes
-//									"(CANDIDATE_NAME) " + 				
-//									"VALUES " +								
-//									"('Henry Brown')"; 
-//					String insertVote2 = 
-//							"INSERT INTO Votes " + 		   
-//									"(CANDIDATE_NAME) " + 				
-//									"VALUES " +								
-//									"('Joyce Smalls')";
-//					this.executeUpdate(conn, insertVote1);
-//					this.executeUpdate(conn, insertVote2);
-//
-//					System.out.println("Inserted into Votes table");
-//				} catch (SQLException f) {
-//					System.out.println("ERROR: Could not insert into Votes table");
-//					f.printStackTrace();
-//					return;
-//
-//				}	
+	     //Inserts votes into the Votes table 
+		
+				try {
+					String insertVote1 = 
+							"INSERT INTO Votes " + 		             
+									"(CANDIDATE_NAME) " + 				
+									"VALUES " +								
+									"('Henry Brown')"; 
+					String insertVote2 = 
+							"INSERT INTO Votes " + 		   
+									"(CANDIDATE_NAME) " + 				
+									"VALUES " +								
+									"('Joyce Smalls')";
+					this.executeUpdate(conn, insertVote1);
+					this.executeUpdate(conn, insertVote2);
+
+					System.out.println("Inserted into Votes table");
+				} catch (SQLException f) {
+					System.out.println("ERROR: Could not insert into Votes table");
+					f.printStackTrace();
+					return;
+
+				}	
 		
 		
 		// Display the table
-		// Created for question 3
+		
 //		try {
 //			String displayString = "SELECT * FROM " + this.tableName;
 //			   System.out.println("Table displayed");
