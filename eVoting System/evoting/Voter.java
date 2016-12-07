@@ -39,9 +39,11 @@ public class Voter {
 	 * @param candidate
 	 */
 	public void castVote(Candidate candidate) {
-		
-		System.out.println("TEST ----Candidate chosen: "+candidate.getName());
 
+		VotingDatabase db = new VotingDatabase();
+		db.castVoteToDB(candidate.getName());
+		
+        
 	}
 
 
