@@ -201,14 +201,50 @@ public class VotingDatabase {
 				    "INSERT INTO Voter " + 		   
 		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
 		            "VALUES " +								
-				    "('Stacee Shuler', 9034, 6323494)";
+				    "('Derek Harless', 1333, 228666)";
+		   String insertVoter5 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Joe Agnew', 3587, 654494)";
+		   String insertVoter6 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Eric Obannon', 7854, 985412)";
+		   String insertVoter7 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Donald Duck', 1474, 784258)";
+		   String insertVoter8 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Rick Rickinson', 8745, 123450)";
+		   String insertVoter9 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Hubert Hurley', 9105, 112233)";
+		   String insertVoter10 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Greg Gunderson', 1625, 223344)";
 		   this.executeUpdate(conn, insertVoter1);
 		   this.executeUpdate(conn, insertVoter2);
 		   this.executeUpdate(conn, insertVoter3);
 		   this.executeUpdate(conn, insertVoter4);
+		   this.executeUpdate(conn, insertVoter5);
+		   this.executeUpdate(conn, insertVoter6);
+		   this.executeUpdate(conn, insertVoter7);
+		   this.executeUpdate(conn, insertVoter8);
+		   this.executeUpdate(conn, insertVoter9);
+		   this.executeUpdate(conn, insertVoter10);
 		   System.out.println("Inserted into Voter table");
 	     } catch (SQLException f) {
-			System.out.println("ERROR: Could not insert into table");
+			System.out.println("ERROR: Could not insert into Voter table");
 			f.printStackTrace();
 			return;
 	     
