@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -111,8 +110,24 @@ public class VotingDatabase {
 			e.printStackTrace();
 			return;
 		}
+		
+		// Create VOTING Schema
+		
+		
 
 		// Create Voter table
+		
+		try {
+		    String createSchema =
+			        "CREATE SCHEMA IF NOT EXISTS VOTING";
+			this.executeUpdate(conn, createSchema);
+			System.out.println("Created Voting Database");
+	    } catch (SQLException e) {
+			System.out.println("ERROR: Could not create voting database");
+			e.printStackTrace();
+			return;
+		
+	    }
 		
 		try {
 		    String createVoter =
