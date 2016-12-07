@@ -175,7 +175,7 @@ public class VotingDatabase {
 		
 	    }
 		
-		// Create Admin table
+		// Create Administrator table
 		
 		try {
 		    String createAdmin =
@@ -194,7 +194,7 @@ public class VotingDatabase {
 		
 		
 		
-		// Inserts voters into the Voter table 
+		// Inserts registered voters into the Voter table 
 		try {
 		   String insertVoter1 = 
 				    "INSERT INTO Voter " + 		   
@@ -286,6 +286,8 @@ public class VotingDatabase {
 					return;
 			     
 			     }
+				
+	  // Inserts administrators into the Admin table			
 				
 				try {
 					String insertAdmin1 = 
