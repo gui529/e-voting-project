@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -111,8 +110,23 @@ public class VotingDatabase {
 			e.printStackTrace();
 			return;
 		}
-
-		// Create Voter table
+		
+		// Create VOTING Schema
+				
+		try {
+		    String createSchema =
+			        "CREATE SCHEMA IF NOT EXISTS VOTING";
+			this.executeUpdate(conn, createSchema);
+			System.out.println("Created Voting Database");
+	    } catch (SQLException e) {
+			System.out.println("ERROR: Could not create voting database");
+			e.printStackTrace();
+			return;
+		
+	    }
+		
+		
+		// Create voter table
 		
 		try {
 		    String createVoter =
@@ -161,7 +175,7 @@ public class VotingDatabase {
 		
 	    }
 		
-		// Create Admin table
+		// Create Administrator table
 		
 		try {
 		    String createAdmin =
@@ -180,7 +194,7 @@ public class VotingDatabase {
 		
 		
 		
-		// Inserts voters into the Voter table 
+		// Inserts registered voters into the Voter table 
 		try {
 		   String insertVoter1 = 
 				    "INSERT INTO Voter " + 		   
@@ -272,6 +286,8 @@ public class VotingDatabase {
 					return;
 			     
 			     }
+				
+	  // Inserts administrators into the Admin table			
 				
 				try {
 					String insertAdmin1 = 
