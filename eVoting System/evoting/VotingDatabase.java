@@ -72,6 +72,14 @@ public class VotingDatabase {
 	    }
 	}
 	
+//	public static void castToVoteDB(){
+//		Connection conn = null;
+//		Statement stmt = null;
+//		
+//		
+//		
+//	}
+	
 	/**
 	 * Connect to MySQL, create our tables, and store our votes
 	 */
@@ -125,11 +133,30 @@ public class VotingDatabase {
 			        "CREATE TABLE IF NOT EXISTS " + "Votes" + "(" +
 			        "VOTER_NAME VARCHAR(50), " +
 			        "VOTER_ID INTEGER NOT NULL, " +
-			        "CANDIDATE_NAME VARCHAR(50))";
+			        "CANDIDATE_NAME VARCHAR(50), " +
+			        "HAS_VOTED INTEGER NOT NULL, " +
+			        "TALLY INTEGER NOT NULL";
 			this.executeUpdate(conn, createVotes);
 			System.out.println("Created Votes table");
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the Votes table");
+			e.printStackTrace();
+			return;
+		
+	    }
+		
+		// Create Admin table
+		
+		try {
+		    String createAdmin =
+			        "CREATE TABLE IF NOT EXISTS " + "Admin" + "(" +
+			        "ADMIN_ID INTEGER NOT NULL), " +
+			        "ADMIN_PASSWORD VARCHAR(10))"; 
+			        
+			this.executeUpdate(conn, createAdmin);
+			System.out.println("Created Admin table");
+	    } catch (SQLException e) {
+			System.out.println("ERROR: Could not create Admin table");
 			e.printStackTrace();
 			return;
 		
@@ -194,30 +221,50 @@ public class VotingDatabase {
 			     
 			     }
 				
-	     //Inserts votes into the Votes table 
-		
+//	     //Inserts votes into the Votes table 
+//		
+//				try {
+//					String insertVote =
+//							
+//					this.executeUpdate(conn, insertVote1);
+//					this.executeUpdate(conn, insertVote2);
+//
+//					System.out.println("Inserted into Votes table");
+//				} catch (SQLException f) {
+//					System.out.println("ERROR: Could not insert into Votes table");
+//					f.printStackTrace();
+//					return;
+//
+//				}	
+				// Inserts Administrators into the Admin table 
 				try {
-					String insertVote1 = 
-							"INSERT INTO Votes " + 		             
-									"(CANDIDATE_NAME) " + 				
+					String insertAdmin1 = 
+							"INSERT INTO Admin " + 		   
+									"(ADMIN_ID, ADMIN_PASSWORD) " + 				
 									"VALUES " +								
-									"('Henry Brown')"; 
-					String insertVote2 = 
-							"INSERT INTO Votes " + 		   
-									"(CANDIDATE_NAME) " + 				
+									"(1, 'Owens')"; 
+					String insertAdmin2 = 
+							"INSERT INTO Admin " + 		   
+									"(ADMIN_ID, ADMIN_PASSWORD) " + 				
 									"VALUES " +								
-									"('Joyce Smalls')";
-					this.executeUpdate(conn, insertVote1);
-					this.executeUpdate(conn, insertVote2);
-
-					System.out.println("Inserted into Votes table");
+									"(2, 'Costa')";
+					String insertAdmin3 = 
+							"INSERT INTO Admin " + 		   
+									"(ADMIN_ID, ADMIN_PASSWORD) " + 				
+									"VALUES " +								
+									"(3, 'Schell')";
+					this.executeUpdate(conn, insertAdmin1);
+					this.executeUpdate(conn, insertAdmin2);
+					this.executeUpdate(conn, insertAdmin3);
+					
+					System.out.println("Inserted into Admin table");
 				} catch (SQLException f) {
-					System.out.println("ERROR: Could not insert into Votes table");
+					System.out.println("ERROR: Could not insert into Admin table");
 					f.printStackTrace();
 					return;
 
-				}	
-		
+				}				
+
 		
 		// Display the table
 		
