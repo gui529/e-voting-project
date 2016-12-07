@@ -34,6 +34,9 @@ public class AdminUI {
 	//Admin Function Panel GUI
 	JLabel adminFunPanelLabel = new JLabel("Welcome, Admin");
 	JButton adminLogoutButton = new JButton("LOGOUT");
+	JButton adminUnofficialTallyButton = new JButton("UNOFFICIAL TALLY");
+	JButton adminOfficialTallyButton = new JButton("OFFICIAL TALLY");
+	JButton adminRecountButton = new JButton("RECOUNT");
 	
 	
 	
@@ -60,14 +63,17 @@ public class AdminUI {
 		adminFrame.setVisible(true);
 		
 		adminFunPanel.setLayout(new BoxLayout(adminFunPanel, BoxLayout.Y_AXIS));
-		adminFunPanel.add(adminFunPanelLabel);
+		adminFunPanel.add(adminFunPanelLabel);		
+		adminFunPanel.add(adminUnofficialTallyButton);
+		adminFunPanel.add(adminOfficialTallyButton);
+		adminFunPanel.add(adminRecountButton);
 		adminFunPanel.add(adminLogoutButton);
 		
 		
 		
 		
 		
-		
+		//***************THE FOLLOWING IS WHERE THE LISTENERS ARE LOCATED*********************\\
 		
 	adminLoginButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent o) {
