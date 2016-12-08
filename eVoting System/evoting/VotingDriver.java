@@ -1,7 +1,6 @@
 package evoting;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
@@ -237,67 +236,86 @@ public class VotingDriver {
 				nextButton2.setVisible(true);
 				nextButton2.setEnabled(true);
 
-			}
-		});
 
-		adminButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				AdminUI adminui = new AdminUI();
-				frame.setVisible(false);
-				adminui.adminFrame.setVisible(true);
-			}
 
-		});
-		//The following is taken from http://stackoverflow.com/questions/10586395/jtextfield-how-to-limit-the-number-of-charaters
-		int IDmax = 10;
-		voterId_textf.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				int a = voterId_textf.getText().length();
-				if (a >= IDmax) {
-					e.consume();
-				}
-				//Only take numbers:
-				if (! ((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-
-					e.consume();
-				}
-			}
-		});
-
-		int SSmax = 4;
-		last4ss_textf.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				int a = last4ss_textf.getText().length();
-				if (a >= SSmax) {
-					e.consume();
-				}
-				//Only take numbers:
-				if (! ((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-
-					e.consume();
-				}
-			}
-		});
-
-		int NameMax = 16;
+			}});
+        
+        adminButton.addMouseListener(new MouseAdapter()  
+        {  
+            public void mouseClicked(MouseEvent e)  
+            {  
+               AdminUI adminui = new AdminUI();
+               frame.setVisible(false);
+               adminui.adminFrame.setVisible(true);
+            }  
+            
+            
+        });
+        //The following is taken from http://stackoverflow.com/questions/10586395/jtextfield-how-to-limit-the-number-of-charaters
+        int maxVoterID = 10;
+        voterId_textf.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                int a =voterId_textf.getText().length();
+                if(a >= maxVoterID)
+                {
+                    e.consume();
+                }
+                //Only take numbers:
+                if (!((c >= '0') && (c <= '9') || (c ==   KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE)
+                       )) {
+                   
+                    e.consume();
+                }
+            }
+           });
+        
+        int maxVoterSS = 4;
+        last4ss_textf.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                int a =last4ss_textf.getText().length();
+                if(a >= maxVoterSS)
+                {
+                    e.consume();
+                }
+                //Only take numbers:
+                if (!((c >= '0') && (c <= '9') || (c ==   KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE)
+                       )) {
+                   
+                    e.consume();
+                }
+            }
+           });
+        
+        
+        int maxVoterName = 16;
 		voterName_textf.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				int a = voterName_textf.getText().length();
-				if (a >= NameMax) {
-					e.consume();
-				}
-				if (! ((c >= 'A') && (c <= 'z') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-
-					e.consume();
-				}
-			}
-		});
-
-		greet.setBounds(550, 25, 400, 40);
-		adminButton.setBounds(650, 25, 250, 40);
+            public void keyTyped(KeyEvent e) {
+            	char c = e.getKeyChar();
+                int a = voterName_textf.getText().length();
+                if(a >= maxVoterName)
+                {
+                    e.consume();
+                }
+                if (!((c >= 'A') && (c <= 'z') || (c ==   KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE)
+                       )) {
+                   
+                    e.consume();
+                }
+            }
+           });
+        
+        
+        
+       
+        
+   
+        greet.setBounds(550, 25, 400, 40);
+        adminButton.setBounds(650, 25, 250, 40);
 
 		greetmessage.setBounds(290, 100, 900, 40);
 		warningMessage.setBounds(470, 630, 900, 40);
