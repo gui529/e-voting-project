@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -73,16 +72,27 @@ public class VotingDatabase {
 	}
 	
 	public void castVoteToDB(String candidate){
-	Connection conn = null;
-	try {
-		conn = this.getConnection();
-		System.out.println("Connected to database");
-	} catch (SQLException e) {
-		System.out.println("ERROR: Could not connect to the database");
-		e.printStackTrace();
-		return;
-	}
-			
+
+		// Connect to MySQL
+		Connection conn = null;
+		try {
+			conn = this.getConnection();
+			System.out.println("Connected to database");
+		} catch (SQLException e) {
+			System.out.println("ERROR: Could not connect to the database");
+			e.printStackTrace();
+			return;
+		}
+		
+		String upVote = "UPDATE Candidate SET tally = tally + 1 WHERE CANDIDATE_NAME = 'candidate' ";
+		
+		
+		try {
+			this.executeUpdate(conn, upVote);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -102,8 +112,23 @@ public class VotingDatabase {
 			e.printStackTrace();
 			return;
 		}
-
-		// Create Voter table
+		
+		// Create VOTING Schema
+				
+		try {
+		    String createSchema =
+			        "CREATE SCHEMA IF NOT EXISTS VOTING";
+			this.executeUpdate(conn, createSchema);
+			System.out.println("Created Voting Database");
+	    } catch (SQLException e) {
+			System.out.println("ERROR: Could not create voting database");
+			e.printStackTrace();
+			return;
+		
+	    }
+		
+		
+		// Create voter table
 		
 		try {
 		    String createVoter =
@@ -124,7 +149,8 @@ public class VotingDatabase {
 		try {
 		    String createCandidate =
 			        "CREATE TABLE IF NOT EXISTS " + "Candidate" + "(" +
-			        "CANDIDATE_NAME VARCHAR(50))";
+			        "CANDIDATE_NAME VARCHAR(50), " + 
+			        "TALLY INTEGER NOT NULL)";
 			this.executeUpdate(conn, createCandidate);
 			System.out.println("Created Candidate table");
 	    } catch (SQLException e) {
@@ -141,8 +167,7 @@ public class VotingDatabase {
 			        "VOTER_NAME VARCHAR(50), " +
 			        "VOTER_ID INTEGER NOT NULL, " +
 			        "CANDIDATE_NAME VARCHAR(50), " +
-			        "HAS_VOTED INTEGER NOT NULL, " +
-			        "TALLY INTEGER NOT NULL";
+			        "HAS_VOTED INTEGER NOT NULL)";
 			this.executeUpdate(conn, createVotes);
 			System.out.println("Created Votes table");
 	    } catch (SQLException e) {
@@ -152,12 +177,12 @@ public class VotingDatabase {
 		
 	    }
 		
-		// Create Admin table
+		// Create Administrator table
 		
 		try {
 		    String createAdmin =
 			        "CREATE TABLE IF NOT EXISTS " + "Admin" + "(" +
-			        "ADMIN_ID INTEGER NOT NULL), " +
+			        "ADMIN_ID INTEGER NOT NULL, " +
 			        "ADMIN_PASSWORD VARCHAR(10))"; 
 			        
 			this.executeUpdate(conn, createAdmin);
@@ -171,7 +196,7 @@ public class VotingDatabase {
 		
 		
 		
-		// Inserts voters into the Voter table 
+		// Inserts registered voters into the Voter table 
 		try {
 		   String insertVoter1 = 
 				    "INSERT INTO Voter " + 		   
@@ -192,14 +217,50 @@ public class VotingDatabase {
 				    "INSERT INTO Voter " + 		   
 		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
 		            "VALUES " +								
-				    "('Stacee Shuler', 9034, 6323494)";
+				    "('Derek Harless', 1333, 228666)";
+		   String insertVoter5 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Joe Agnew', 3587, 654494)";
+		   String insertVoter6 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Eric Obannon', 7854, 985412)";
+		   String insertVoter7 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Donald Duck', 1474, 784258)";
+		   String insertVoter8 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Rick Rickinson', 8745, 123450)";
+		   String insertVoter9 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Hubert Hurley', 9105, 112233)";
+		   String insertVoter10 = 
+				    "INSERT INTO Voter " + 		   
+		            "(VOTER_NAME, LAST_4_SOCIAL, VOTER_ID) " + 				
+		            "VALUES " +								
+				    "('Greg Gunderson', 1625, 223344)";
 		   this.executeUpdate(conn, insertVoter1);
 		   this.executeUpdate(conn, insertVoter2);
 		   this.executeUpdate(conn, insertVoter3);
 		   this.executeUpdate(conn, insertVoter4);
+		   this.executeUpdate(conn, insertVoter5);
+		   this.executeUpdate(conn, insertVoter6);
+		   this.executeUpdate(conn, insertVoter7);
+		   this.executeUpdate(conn, insertVoter8);
+		   this.executeUpdate(conn, insertVoter9);
+		   this.executeUpdate(conn, insertVoter10);
 		   System.out.println("Inserted into Voter table");
 	     } catch (SQLException f) {
-			System.out.println("ERROR: Could not insert into table");
+			System.out.println("ERROR: Could not insert into Voter table");
 			f.printStackTrace();
 			return;
 	     
@@ -209,14 +270,14 @@ public class VotingDatabase {
 				try {
 				   String insertCandidate1 = 
 						    "INSERT INTO Candidate " + 		   
-				            "(CANDIDATE_NAME) " + 				
+				            "(CANDIDATE_NAME, TALLY) " + 				
 				            "VALUES " +								
-						    "('Henry Brown')"; 
+						    "('Henry Brown', 0)"; 
 				   String insertCandidate2 = 
 						    "INSERT INTO Candidate " + 		   
-				            "(CANDIDATE_NAME) " + 				
+				            "(CANDIDATE_NAME, TALLY) " + 				
 				            "VALUES " +								
-						    "('Joyce Smalls')";
+						    "('Joyce Smalls', 0)";
 				   this.executeUpdate(conn, insertCandidate1);
 				   this.executeUpdate(conn, insertCandidate2);
 			
@@ -228,22 +289,8 @@ public class VotingDatabase {
 			     
 			     }
 				
-//	     //Inserts votes into the Votes table 
-//		
-//				try {
-//					String insertVote =
-//							
-//					this.executeUpdate(conn, insertVote1);
-//					this.executeUpdate(conn, insertVote2);
-//
-//					System.out.println("Inserted into Votes table");
-//				} catch (SQLException f) {
-//					System.out.println("ERROR: Could not insert into Votes table");
-//					f.printStackTrace();
-//					return;
-//
-//				}	
-				// Inserts Administrators into the Admin table 
+	  // Inserts administrators into the Admin table			
+				
 				try {
 					String insertAdmin1 = 
 							"INSERT INTO Admin " + 		   

@@ -72,6 +72,7 @@ public class VotingServer {
 		
 		return false;
 	}
+	
 	//The following validates the Admin's Login
 	public boolean validateAdminLogin(String adminID, String adminPass) throws FileNotFoundException, IOException {
 		try{
