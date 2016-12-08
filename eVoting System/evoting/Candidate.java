@@ -39,15 +39,7 @@ public class Candidate {
 		numberOfVotes++;
 		
 
-		try {
-			myWriter = new FileWriter("Votes.txt",true);
-			myWriter.write(getName()+" "+numberOfVotes+System.lineSeparator());
-			myWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		
 		
 	}
 	

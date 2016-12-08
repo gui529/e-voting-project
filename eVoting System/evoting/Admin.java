@@ -20,7 +20,7 @@ public class Admin {
 
 	public String getOfficialTally() {
 		String tally = Database.getTally();
-		System.out.println(Database.getTally());
+		//System.out.println(Database.getTally());
 		return tally;
 		
 		
