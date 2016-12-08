@@ -72,13 +72,20 @@ public class VotingDatabase {
 	    }
 	}
 	
-//	public static void castToVoteDB(){
-//		Connection conn = null;
-//		Statement stmt = null;
-//		
-//		
-//		
-//	}
+	public void castVoteToDB(String candidate){
+	Connection conn = null;
+	try {
+		conn = this.getConnection();
+		System.out.println("Connected to database");
+	} catch (SQLException e) {
+		System.out.println("ERROR: Could not connect to the database");
+		e.printStackTrace();
+		return;
+	}
+			
+		
+	}
+
 	
 	/**
 	 * Connect to MySQL, create our tables, and store our votes
