@@ -233,7 +233,7 @@ public class VotingDriver{
 		        p2.add(confirmMessage);
 		        p2.repaint();
 
-				int delay=5000;// wait for second
+				int delay=5000;// wait for 5 seconds
 
 				Timer timer = new Timer(delay, new AbstractAction() {
 				    @Override
