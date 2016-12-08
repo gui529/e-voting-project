@@ -281,12 +281,12 @@ public class VotingDriver{
             
         });
         //The following is taken from http://stackoverflow.com/questions/10586395/jtextfield-how-to-limit-the-number-of-charaters
-        int IDmax = 10;
+        int maxVoterID = 10;
         voterId_textf.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
                 int a =voterId_textf.getText().length();
-                if(a >= IDmax)
+                if(a >= maxVoterID)
                 {
                     e.consume();
                 }
@@ -300,12 +300,12 @@ public class VotingDriver{
             }
            });
         
-        int SSmax = 4;
+        int maxVoterSS = 4;
         last4ss_textf.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
                 int a =last4ss_textf.getText().length();
-                if(a >= SSmax)
+                if(a >= maxVoterSS)
                 {
                     e.consume();
                 }
@@ -320,12 +320,12 @@ public class VotingDriver{
            });
         
         
-        int NameMax = 16;
+        int maxVoterName = 16;
 		voterName_textf.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
             	char c = e.getKeyChar();
                 int a = voterName_textf.getText().length();
-                if(a >= NameMax)
+                if(a >= maxVoterName)
                 {
                     e.consume();
                 }

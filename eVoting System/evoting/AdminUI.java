@@ -75,12 +75,12 @@ import javax.swing.JTextField;
 	
 	
 	  //***************THE FOLLOWING IS WHERE THE LISTENERS ARE LOCATED*********************\\
-	  int maxAdminUserChar = 16;
+	  int maxAdminID= 16;
 	  adminIDTextBox.addKeyListener(new KeyAdapter() {
 	   public void keyTyped(KeyEvent e) {
 	    char c = e.getKeyChar();
 	    int a = adminIDTextBox.getText().length();
-	    if (a >= maxAdminUserChar) {
+	    if (a >= maxAdminID) {
 	     e.consume();
 	    }
 	    if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
@@ -90,17 +90,15 @@ import javax.swing.JTextField;
 	   }
 	  });
 	
+	  int maxAdminPass =16;
 	  passwordField.addKeyListener(new KeyAdapter() {
 	   public void keyTyped(KeyEvent e) {
 	    char c = e.getKeyChar();
 	    int a = passwordField.getText().length();
-	    if (a >= maxAdminUserChar) {
+	    if (a >= maxAdminPass) {
 	     e.consume();
 	    }
-	    if (!((c >= 'A') && (c <= 'z') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-	
-	     e.consume();
-	    }
+	    
 	   }
 	  });
 	
