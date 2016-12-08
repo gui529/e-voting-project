@@ -8,7 +8,6 @@
 	import java.awt.event.KeyEvent;
 	import java.io.FileNotFoundException;
 	import java.io.IOException;
-	
 	import javax.swing.BoxLayout;
 	import javax.swing.JButton;
 	import javax.swing.JFrame;
@@ -28,7 +27,7 @@
 	 JLabel adminIDLabel = new JLabel("Enter Admin ID");
 	 JLabel adminPassLabel = new JLabel("Enter Admin Password");
 	 JTextField adminIDTextBox = new JTextField();
-	 JTextField adminPassTextBox = new JTextField();
+	 //JTextField adminPassTextBox = new JTextField();
 	 JButton adminLoginButton = new JButton("LOGIN");
 	 JButton homeButton = new JButton("HOME");
 	
@@ -73,6 +72,7 @@
 	  adminFunPanel.add(adminLogoutButton);
 	
 	
+	  //***************THE FOLLOWING IS WHERE THE LISTENERS ARE LOCATED*********************\\
 	  int maxAdminUserChar = 16;
 	  adminIDTextBox.addKeyListener(new KeyAdapter() {
 	   public void keyTyped(KeyEvent e) {
@@ -81,7 +81,7 @@
 	    if (a >= maxAdminUserChar) {
 	     e.consume();
 	    }
-	    if (!((c >= 'A') && (c <= 'z') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+	    if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
 	
 	     e.consume();
 	    }
@@ -103,7 +103,7 @@
 	  });
 	
 	
-	  //***************THE FOLLOWING IS WHERE THE LISTENERS ARE LOCATED*********************\\
+	  
 	
 	  adminLoginButton.addActionListener(new ActionListener() {
 	   public void actionPerformed(ActionEvent o) {
@@ -111,7 +111,7 @@
 	    String adminID = adminIDTextBox.getText();
 	    String adminPass = String.valueOf(passwordField.getPassword());
 	    VotingServer VS = new VotingServer();
-	    //System.out.println("try 2" + adminID + " " + adminPass);
+	   
 	
 	    try {
 	     if (VS.validateAdminLogin(adminID, adminPass)) {
@@ -139,7 +139,7 @@
 	   public void actionPerformed(ActionEvent o) {
 	    adminWelcomePanel.setVisible(false);
 	    adminIDTextBox.setText("");
-	    adminPassTextBox.setText("");
+	    passwordField.setText("");
 	    adminFrame.dispose();
 	    VotingDriver GUI = new VotingDriver(); //createAndShowGUI(candidate1,candidate2);
 	    GUI.createAndShowGUI();
@@ -155,7 +155,7 @@
 	    adminWelcomePanel.setVisible(true);
 	    adminFunPanel.setVisible(false);
 	    adminIDTextBox.setText("");
-	    adminPassTextBox.setText("");
+	    passwordField.setText("");
 	
 	
 	   }
