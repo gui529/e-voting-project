@@ -11,14 +11,21 @@ public class Admin {
 	private int adminPassword;
 	private int numTotalVotes;
 	private int numTotalVoters;
+	VotingDatabase Database = new VotingDatabase();
+
 
 	private int[] getUnofficialTally() {
 		return this.unofficialTally;
 	}
 
-	private int[] getOfficialTally() {
-		return this.officialTally;
+	public String getOfficialTally() {
+		String tally = Database.getTally();
+		System.out.println(Database.getTally());
+		return tally;
+		
+		
 	}
+	
 
 	/**
 	 * 

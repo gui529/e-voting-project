@@ -59,9 +59,9 @@ public class VotingDriver{
 
         SwingUtilities.updateComponentTreeUI(frame);        
              
-        JTextField voterId_textf = new JTextField("");
-        JTextField voterName_textf = new JTextField("");
-        JTextField last4ss_textf = new JTextField("");
+        JTextField voterId_textf = new JTextField("56789");
+        JTextField voterName_textf = new JTextField("Costa");
+        JTextField last4ss_textf = new JTextField("1234");
 
         JLabel greet = new JLabel("eVoting System");       
         JLabel greetmessage = new JLabel("Please type your information and press the <NEXT> button.");

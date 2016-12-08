@@ -15,12 +15,14 @@
 	import javax.swing.JOptionPane;
 	import javax.swing.JPanel;
 	import javax.swing.JPasswordField;
-	import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 	
 	public class AdminUI {
 	 JFrame adminFrame = new JFrame();
 	 JPanel adminWelcomePanel = new JPanel();
 	 JPanel adminFunPanel = new JPanel();
+	 Admin admin = new Admin();
 	
 	 //Admin Welcome Panel GUI
 	 JLabel adminWelcomePanelLabel = new JLabel("Admin Login.");
@@ -148,6 +150,27 @@
 	
 	   }
 	  });
+	  
+	  
+	  adminOfficialTallyButton.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent o) {
+			  // adminFunPanel.setVisible(false);
+
+				 adminFunPanel.removeAll();
+
+				 JLabel tallyLabel = new JLabel(admin.getOfficialTally());
+			 
+
+			  adminFunPanel.add(tallyLabel);
+			  
+			  
+			  adminFunPanel.revalidate();
+			  adminFunPanel.repaint();
+			  adminFunPanel.add(homeButton);
+
+		
+		   }
+		  });
 	
 	
 	  adminLogoutButton.addActionListener(new ActionListener() {
@@ -160,6 +183,8 @@
 	
 	   }
 	  });
-	
+	  adminFunPanel.repaint();
+
 	 }
+
 	}

@@ -38,37 +38,13 @@ public class VotingServer {
 	 * @throws FileNotFoundException 
 	 */
 	public boolean validateLogin(String voterID, String name, String social) throws FileNotFoundException, IOException {
-		try{
+		
 			
 			if (voterID.equals("") || name.equals("") || social.equals("")){
 				return false;
 			}
 			
-		boolean done = false;
-		br = new BufferedReader(new FileReader("registrationList.txt")); 
-		    
-		String line;// = br.readLine();
-
-		while ((line = br.readLine()) != null){
-	       // line = br.readLine();
-	        
-		    StringTokenizer st = new StringTokenizer(line);
-		    int i =0;
-		    while(st.hasMoreTokens()){
-		    	voterInfo[i] = st.nextToken(); 
-		    	i++;
-		    	
-		    }
-
-		    if (voterInfo[3].contains(voterID) && voterInfo[1].contains(name) && voterInfo[2].contains(social)  ){
-		    	return true;
-		    }
-			
-		} 
-		}
-		catch (IOException e){
-			e.printStackTrace();
-		}
+		
 		
 		return false;
 	}
