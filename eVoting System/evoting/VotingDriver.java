@@ -21,7 +21,7 @@ import javax.swing.event.ChangeEvent;
 public class VotingDriver {
 
 	static Candidate chosenCandidate;
-	String voterID;
+	static String voterID;
 	String name;
 	String social;
 	Voter voter;
@@ -29,7 +29,7 @@ public class VotingDriver {
 	public void createAndShowGUI() {
 		Candidate candidate1 = new Candidate();
 		Candidate candidate2 = new Candidate();
-
+		
 		candidate1.setName("Henry Brown");
 		candidate2.setName("Joyce Smalls");
 		//Create a frame
@@ -53,9 +53,9 @@ public class VotingDriver {
 
 		SwingUtilities.updateComponentTreeUI(frame);
 
-		JTextField voterId_textf = new JTextField("56789");
-		JTextField voterName_textf = new JTextField("Costa");
-		JTextField last4ss_textf = new JTextField("1234");
+		JTextField voterId_textf = new JTextField("");
+		JTextField voterName_textf = new JTextField("");
+		JTextField last4ss_textf = new JTextField("");
 
 		JLabel greet = new JLabel("eVoting System");
 		JLabel greetmessage = new JLabel("Please type your information and press the <NEXT> button.");
@@ -112,10 +112,10 @@ public class VotingDriver {
 		nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String voterID = voterId_textf.getText();
+				voterID = voterId_textf.getText();
 				String name = voterName_textf.getText();
 				String social = last4ss_textf.getText();
-				voter = new Voter(voterID);
+				voter = new Voter();
 
 				try {
 

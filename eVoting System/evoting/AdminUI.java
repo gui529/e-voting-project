@@ -2,16 +2,22 @@ package evoting;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -23,6 +29,7 @@ import javax.swing.JTextField;
 	 JPanel adminWelcomePanel = new JPanel();
 	 JPanel adminFunPanel = new JPanel();
 	 Admin admin = new Admin();
+	 boolean endElection;
 	
 	 //Admin Welcome Panel GUI
 	 JLabel adminWelcomePanelLabel = new JLabel("Admin Login.");
@@ -39,8 +46,12 @@ import javax.swing.JTextField;
 	 JButton adminLogoutButton = new JButton("LOGOUT");
 	 JButton adminUnofficialTallyButton = new JButton("UNOFFICIAL TALLY");
 	 JButton adminOfficialTallyButton = new JButton("OFFICIAL TALLY");
+	 JButton endElectionButton = new JButton("END ELECTION AND GET OFFICIAL TALLY");
+
 	 JButton adminRecountButton = new JButton("RECOUNT");
 	 JPasswordField passwordField = new JPasswordField(10);
+	 
+	 VotingDatabase db = new VotingDatabase();
 	
 	
 	
@@ -113,26 +124,30 @@ import javax.swing.JTextField;
 	    VotingServer VS = new VotingServer();
 	   
 	
-	    try {
-	     if (VS.validateAdminLogin(adminID, adminPass)) {
-	      adminWelcomePanel.setVisible(false);
-	      adminFunPanel.setVisible(true);
-	      adminFrame.getContentPane().add(adminFunPanel);
-	     } else {
-	      adminIDTextBox.setText("");
-	      passwordField.setText("");
-	      JOptionPane.showMessageDialog(adminWelcomePanel, "Invalid Login Credentials.");
-	     }
-	    } catch (FileNotFoundException e1) {
+	    
+	     try {
+			if (VS.validateAdminLogin(adminID, adminPass)) {
+			  adminWelcomePanel.setVisible(false);
+			  adminFunPanel.setVisible(true);
+			  adminFrame.getContentPane().add(adminFunPanel);
+			 } else {
+			  adminIDTextBox.setText("");
+			  passwordField.setText("");
+			  JOptionPane.showMessageDialog(adminWelcomePanel, "Invalid Login Credentials.");
+			 }
+		} catch (HeadlessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	     // TODO Auto-generated catch block
-	     e1.printStackTrace();
-	    } catch (IOException e1) {
 	     // TODO Auto-generated catch block
-	     e1.printStackTrace();
 	    }
-	   }
+	   });
 	
-	  });
+	  
 	
 	
 	  homeButton.addActionListener(new ActionListener() {
@@ -152,24 +167,121 @@ import javax.swing.JTextField;
 	  
 	  adminOfficialTallyButton.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent o) {
-			  // adminFunPanel.setVisible(false);
+			   //adminFunPanel.setVisible(true);
 
 				 adminFunPanel.removeAll();
 
-				 JLabel tallyLabel = new JLabel(admin.getOfficialTally());
+				 //JLabel tallyLabel = new JLabel(admin.getOfficialTally());
 			 
+			  //adminFunPanel.add(tallyLabel);
+			  
 
+			  
+			  //adminFunPanel.revalidate();
+			 // adminFunPanel.repaint();
+			  adminFunPanel.add(endElectionButton);
+			  adminFunPanel.add(homeButton);
+			 // endElection = true;
+			  adminFunPanel.revalidate();
+			  adminFunPanel.repaint();
+
+
+		
+		   }
+		  });  
+	  
+	  
+	  endElectionButton.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent o) {
+
+			   adminFunPanel.removeAll();
+
+			   JLabel tallyLabel = new JLabel(admin.getOfficialTally());
+			
 			  adminFunPanel.add(tallyLabel);
 			  
 			  
 			  adminFunPanel.revalidate();
-			  adminFunPanel.repaint();
-			  adminFunPanel.add(homeButton);
-
-		
+			  adminFunPanel.repaint();		
 		   }
-		  });
-	
+		  });  
+	  
+	  adminUnofficialTallyButton.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent o) {
+
+			   adminFunPanel.removeAll();
+
+			   JLabel tallyLabel = new JLabel(admin.getOfficialTally());
+			
+			  adminFunPanel.add(tallyLabel);
+			  
+			  adminFunPanel.add(homeButton);
+			  adminFunPanel.revalidate();
+			  adminFunPanel.repaint();		
+		   }
+		  }); 
+	  
+	  
+	  adminRecountButton.addActionListener(new ActionListener() {
+		   @SuppressWarnings("unchecked")
+		public void actionPerformed(ActionEvent o) {
+
+			   adminFunPanel.removeAll();
+			    @SuppressWarnings("rawtypes")
+				DefaultListModel votersList = new DefaultListModel();
+
+			    ArrayList<Voter> voterList = new ArrayList<Voter>();
+			    
+				   try {
+						voterList = db.getList();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+			    
+			    
+			   JList list = new JList(votersList);
+			   
+			   
+			   
+			   votersList.addElement("List of voter IDs and their candidate for recounting purposes");
+			   votersList.addElement("----------------------------------------------------------------------------");
+
+			   votersList.addElement("VOTER ID   -   CANDIDATE NAME");
+
+			    for (int i = 0; i < voterList.size(); i++) {
+			    
+			    	
+			    	String voterInfo = String.format("%s                 %s",voterList.get(i).getvoterID(),voterList.get(i).getVotedFor());
+			    //            //System.out.println(voterList.get(0).getVotedFor());
+			   
+
+			    	
+			        votersList.addElement(voterInfo);
+
+			    	
+			    }
+			        
+			        
+			        
+			        
+
+
+			        
+			        
+			   
+			   
+			   
+			  
+			  
+			  
+			  adminFunPanel.add(list);
+			  adminFunPanel.add(homeButton);
+			  adminFunPanel.revalidate();
+			  adminFunPanel.repaint();		
+		   }
+		  }); 
+	  
+	  
 	
 	  adminLogoutButton.addActionListener(new ActionListener() {
 	   public void actionPerformed(ActionEvent o) {

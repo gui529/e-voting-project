@@ -6,12 +6,13 @@ public class Voter {
 
 	private String voterName;
 	private String voterID;
+	private String votedFor;
 
 	boolean isLoggedIn = false;
 
 	Candidate chosenCandidate = new Candidate();
 
-	public Voter(String voterID) {
+	public Voter() {
 		this.voterID = voterID;
 
 		//protected int voterID;
@@ -40,19 +41,26 @@ public class Voter {
 
 	}
 
-	private void setVoterID(String voterID) {
+	public void setVoterID(String voterID) {
 		this.voterID = voterID;
 	}
 
-	private void setVoterName(String voterName) {
+	public void setVoterName(String voterName) {
 		this.voterName = voterName;
 	}
 
-	private String getvoterID() {
+	public String getvoterID() {
 		return this.voterID;
 	}
 
-	private String getVoterName() {
+	public String getVoterName() {
 		return this.voterName;
 	}
+	public void setVotedFor(String votedFor){
+		this.votedFor = votedFor;
+	}
+	public String getVotedFor(){
+		return this.votedFor;
+	}
+	
 }

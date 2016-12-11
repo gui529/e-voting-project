@@ -41,6 +41,9 @@ public class VotingServer {
 	public boolean validateLogin(String voterID, String name, String social) throws FileNotFoundException,
 	IOException, SQLException {
 		
+		if (voterID.equals("") || name.equals("") || social.equals("")){
+			return false;
+		}
 			return (db.validateVoter(voterID, social, name));
 			//  Auto-generated catch block
 		
@@ -48,41 +51,10 @@ public class VotingServer {
 	}
 
 	//The following validates the Admin's Login
-	public boolean validateAdminLogin(String adminID, String adminPass) throws FileNotFoundException,
-	IOException {
-		try {
+	public boolean validateAdminLogin(String adminID, String adminPass) throws SQLException{
 
-			if (adminID.equals("") || adminPass.equals("")) {
-				return false;
-			}
+		return (db.validateAdmin(adminID, adminPass));
 
-			boolean done = false;
-			br = new BufferedReader(new FileReader("adminList.txt"));
-
-			String line; // = br.readLine();
-
-			while ((line = br.readLine()) != null) {
-				// line = br.readLine();
-
-				StringTokenizer st = new StringTokenizer(line);
-				int i = 0;
-				while (st.hasMoreTokens()) {
-					adminInfo[i] = st.nextToken();
-					i++;
-
-				}
-
-				if (adminInfo[0].contains(adminID) && adminInfo[1].contains(adminPass)) {
-					return true;
-				}
-
-			}
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
-
-		return false;
 	}
 
 	/**
