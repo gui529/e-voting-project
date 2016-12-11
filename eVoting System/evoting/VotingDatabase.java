@@ -204,6 +204,37 @@
 		
 		 }
 		
+		 // Validating the admin username and password
+		 
+		 public boolean validateAdmin(String adminPassword, int adminID) throws SQLException {
+			  Connection conn = null;
+			  conn = this.getConnection();
+			
+			  String query = String.format("SELECT count(ADMIN_ID) FROM voter WHERE ADMIN_PASSWORD = %s AND ADMIN_ID = \"%s\"", adminID, adminPassword);
+
+
+			
+			
+			  try {
+				  Statement sts = conn.createStatement();
+
+				  ResultSet rs = sts.executeQuery(query);
+				
+
+				  rs.next();
+
+				  String numberFound = rs.getString("count(ADMIN_ID)");
+				  java.sql.ResultSetMetaData rsmdd = rs.getMetaData();
+  
+			  } 
+
+
+			  catch (SQLException e) {
+				  e.printStackTrace();
+			  }
+			return false;
+
+		 }
 		
 		
 		 /**
