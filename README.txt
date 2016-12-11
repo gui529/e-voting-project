@@ -1,8 +1,9 @@
 To run:
 
 1. Run evotingSetup.sql script(included in zip) to setup the database.
-2. Run VotingDriver.java
-3. Vote,count tallies, Recount
+2. edit line #23 inside VotingDatabase.java with your database password -> private final String password = " ";
+3. Run VotingDriver.java
+4. Vote,count tallies, Recount
 
 List of some registered voters for testing purposes:
  # VOTER_NAME, LAST_4_SOCIAL, VOTER_ID

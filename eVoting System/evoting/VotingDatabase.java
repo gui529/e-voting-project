@@ -5,10 +5,8 @@
 		import java.sql.ResultSet;
 		import java.sql.SQLException;
 		import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Properties;
-
-		import com.mysql.jdbc.ResultSetMetaData;
+		import java.util.ArrayList;
+		import java.util.Properties;
 
 		/**
 		 This class instantiates our voting database
@@ -22,7 +20,7 @@ import java.util.Properties;
 		 private final String userName = "root";
 
 		 /** The password for the MySQL account (or empty for anonymous) */
-		 private final String password = "132020gui1X";
+		 private final String password = " ";
 
 		 /** The name of the computer running MySQL */
 		 private final String serverName = "localhost";
@@ -109,7 +107,7 @@ import java.util.Properties;
 		  try {
 		   Statement st = conn.createStatement();
 		   st.executeUpdate(query);
-		  // updateCandidateChosen(voterID);
+		   // updateCandidateChosen(voterID);
 
 		   // rs.next();
 
@@ -136,31 +134,31 @@ import java.util.Properties;
 */
 
 		 }
-		 
-		 public void updateCandidateChosen(){
-			 Connection conn = null;
-			 String voterID = VotingDriver.voterID;
-			  try {
-			   conn = this.getConnection();
-			  } catch (SQLException e) {
-			   e.printStackTrace();
-			  }
-			  String candidate = VotingDriver.chosenCandidate.getName();
-			  //System.out.println(candidate);
-			  String query = String.format("UPDATE voter SET CANDIDATE_PICKED=\"%s\" WHERE VOTER_ID = %s", candidate,voterID);
 
-			  try {
-			   Statement st = conn.createStatement();
-			   st.executeUpdate(query);
-			   
-			   // rs.next();
+		 public void updateCandidateChosen() {
+		  Connection conn = null;
+		  String voterID = VotingDriver.voterID;
+		  try {
+		   conn = this.getConnection();
+		  } catch (SQLException e) {
+		   e.printStackTrace();
+		  }
+		  String candidate = VotingDriver.chosenCandidate.getName();
+		  //System.out.println(candidate);
+		  String query = String.format("UPDATE voter SET CANDIDATE_PICKED=\"%s\" WHERE VOTER_ID = %s", candidate, voterID);
+
+		  try {
+		   Statement st = conn.createStatement();
+		   st.executeUpdate(query);
+
+		   // rs.next();
 
 
-			  } catch (SQLException e) {
-			   // TODO Auto-generated catch block
-			   e.printStackTrace();
-			  }
-			 
+		  } catch (SQLException e) {
+		   // TODO Auto-generated catch block
+		   e.printStackTrace();
+		  }
+
 		 }
 
 		 public String getTally() {
@@ -247,7 +245,7 @@ import java.util.Properties;
 		  Connection conn = null;
 		  conn = this.getConnection();
 
-		  String query = String.format("SELECT count(ADMIN_ID) FROM admin WHERE ADMIN_PASSWORD = \"%s\" AND ADMIN_ID = \"%s\"", adminPassword,adminID);
+		  String query = String.format("SELECT count(ADMIN_ID) FROM admin WHERE ADMIN_PASSWORD = \"%s\" AND ADMIN_ID = \"%s\"", adminPassword, adminID);
 
 
 
@@ -265,58 +263,58 @@ import java.util.Properties;
 
 		   if (numberFound.equals("1")) {
 
-			    return true;
-			   } else {
-			    return false;
+		    return true;
+		   } else {
+		    return false;
 
-			   }
-			  } catch (SQLException e) {
-			   e.printStackTrace();
-			  }
+		   }
+		  } catch (SQLException e) {
+		   e.printStackTrace();
+		  }
 
-			  return false;
+		  return false;
 		 }
 
 
-		 public ArrayList<Voter> getList() throws SQLException{
-			 
-		        ArrayList<Voter> voterList = new ArrayList<Voter>();
-		        
-				  Connection conn = null;
-				  try {
-					conn = this.getConnection();
-		            //Statement st = conn.createStatement();
+		 public ArrayList < Voter > getList() throws SQLException {
+
+		  ArrayList < Voter > voterList = new ArrayList < Voter > ();
+
+		  Connection conn = null;
+		  try {
+		   conn = this.getConnection();
+		   //Statement st = conn.createStatement();
 
 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				  
-		            Statement st = conn.createStatement();
+		  } catch (SQLException e) {
+		   e.printStackTrace();
+		  }
 
-		            ResultSet srs = st.executeQuery("SELECT * FROM voter WHERE HAS_VOTED=1;");
+		  Statement st = conn.createStatement();
 
-		        
-	           // Connection conn = DriverManager.getConnection(url, "root", "admin");
-	            //Statement st = conn.createStatement();
-	            //ResultSet srs = st.executeQuery("SELECT * FROM person");
-	            while (srs.next()) {
-	                Voter voter = new Voter();
-	                voter.setVoterID(srs.getString("VOTER_ID"));
-	                voter.setVotedFor(srs.getString("CANDIDATE_PICKED"));
-	                voterList.add(voter);
-	            }
-				
-		        
-		        
-		        
-		        
-		        return voterList;			 
+		  ResultSet srs = st.executeQuery("SELECT * FROM voter WHERE HAS_VOTED=1;");
+
+
+		  // Connection conn = DriverManager.getConnection(url, "root", "admin");
+		  //Statement st = conn.createStatement();
+		  //ResultSet srs = st.executeQuery("SELECT * FROM person");
+		  while (srs.next()) {
+		   Voter voter = new Voter();
+		   voter.setVoterID(srs.getString("VOTER_ID"));
+		   voter.setVotedFor(srs.getString("CANDIDATE_PICKED"));
+		   voterList.add(voter);
+		  }
+
+
+
+
+
+		  return voterList;
 		 }
-		 
-		 
-		 
-		 
+
+
+
+
 
 
 		 /**
@@ -337,15 +335,15 @@ import java.util.Properties;
 		  VotingDatabase app = new VotingDatabase();
 		  //	app.validateVoter("5639422", "1424","Trkoy");
 		  //app.updateHasVoted("5634544");
-	        //ArrayList<Voter> voterList = new ArrayList<Voter>();
-	        //voterList = app.getList();
-           // System.out.println(voterList.get(0).getvoterID());
-            //System.out.println(voterList.get(0).getVotedFor());
-            
+		  //ArrayList<Voter> voterList = new ArrayList<Voter>();
+		  //voterList = app.getList();
+		  // System.out.println(voterList.get(0).getvoterID());
+		  //System.out.println(voterList.get(0).getVotedFor());
 
 
-	        
-	        
+
+
+
 		  app.run();
 
 
