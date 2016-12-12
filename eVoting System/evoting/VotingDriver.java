@@ -29,13 +29,12 @@ public class VotingDriver {
 	public void createAndShowGUI() {
 		Candidate candidate1 = new Candidate();
 		Candidate candidate2 = new Candidate();
-		
+
 		candidate1.setName("Henry Brown");
 		candidate2.setName("Joyce Smalls");
 		//Create a frame
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame("eVoting");
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);   
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 
@@ -174,10 +173,10 @@ public class VotingDriver {
 							last4ss_textf.setText("");
 							JOptionPane.showMessageDialog(p, "Invalid Login Credentials.");
 						}
-					} catch (HeadlessException e1) {
+					} catch(HeadlessException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch(SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -191,10 +190,6 @@ public class VotingDriver {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				//finally
-				//{
-				//return;
-				//}
 
 			}
 		});
@@ -236,86 +231,67 @@ public class VotingDriver {
 				nextButton2.setVisible(true);
 				nextButton2.setEnabled(true);
 
+			}
+		});
 
+		adminButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				AdminUI adminui = new AdminUI();
+				frame.setVisible(false);
+				adminui.adminFrame.setVisible(true);
+			}
 
-			}});
-        
-        adminButton.addMouseListener(new MouseAdapter()  
-        {  
-            public void mouseClicked(MouseEvent e)  
-            {  
-               AdminUI adminui = new AdminUI();
-               frame.setVisible(false);
-               adminui.adminFrame.setVisible(true);
-            }  
-            
-            
-        });
-        //The following is taken from http://stackoverflow.com/questions/10586395/jtextfield-how-to-limit-the-number-of-charaters
-        int maxVoterID = 10;
-        voterId_textf.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                int a =voterId_textf.getText().length();
-                if(a >= maxVoterID)
-                {
-                    e.consume();
-                }
-                //Only take numbers:
-                if (!((c >= '0') && (c <= '9') || (c ==   KeyEvent.VK_BACK_SPACE)
-                        || (c == KeyEvent.VK_DELETE)
-                       )) {
-                   
-                    e.consume();
-                }
-            }
-           });
-        
-        int maxVoterSS = 4;
-        last4ss_textf.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                int a =last4ss_textf.getText().length();
-                if(a >= maxVoterSS)
-                {
-                    e.consume();
-                }
-                //Only take numbers:
-                if (!((c >= '0') && (c <= '9') || (c ==   KeyEvent.VK_BACK_SPACE)
-                        || (c == KeyEvent.VK_DELETE)
-                       )) {
-                   
-                    e.consume();
-                }
-            }
-           });
-        
-        
-        int maxVoterName = 16;
+		});
+		//The following is taken from http://stackoverflow.com/questions/10586395/jtextfield-how-to-limit-the-number-of-charaters
+		int maxVoterID = 10;
+		voterId_textf.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				int a = voterId_textf.getText().length();
+				if (a >= maxVoterID) {
+					e.consume();
+				}
+				//Only take numbers:
+				if (! ((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+
+					e.consume();
+				}
+			}
+		});
+
+		int maxVoterSS = 4;
+		last4ss_textf.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				int a = last4ss_textf.getText().length();
+				if (a >= maxVoterSS) {
+					e.consume();
+				}
+				//Only take numbers:
+				if (! ((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+
+					e.consume();
+				}
+			}
+		});
+
+		int maxVoterName = 16;
 		voterName_textf.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-            	char c = e.getKeyChar();
-                int a = voterName_textf.getText().length();
-                if(a >= maxVoterName)
-                {
-                    e.consume();
-                }
-                if (!((c >= 'A') && (c <= 'z') || (c ==   KeyEvent.VK_BACK_SPACE)
-                        || (c == KeyEvent.VK_DELETE)
-                       )) {
-                   
-                    e.consume();
-                }
-            }
-           });
-        
-        
-        
-       
-        
-   
-        greet.setBounds(550, 25, 400, 40);
-        adminButton.setBounds(650, 25, 250, 40);
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				int a = voterName_textf.getText().length();
+				if (a >= maxVoterName) {
+					e.consume();
+				}
+				if (! ((c >= 'A') && (c <= 'z') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+
+					e.consume();
+				}
+			}
+		});
+
+		greet.setBounds(550, 25, 400, 40);
+		adminButton.setBounds(650, 25, 250, 40);
 
 		greetmessage.setBounds(290, 100, 900, 40);
 		warningMessage.setBounds(470, 630, 900, 40);
