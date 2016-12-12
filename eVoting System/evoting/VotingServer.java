@@ -23,7 +23,7 @@ public class VotingServer {
 	 * @throws SQLException 
 	 */
 	public boolean validateLogin(String voterID, String name, String social) throws FileNotFoundException,
-<<<<<<< HEAD
+
 	IOException, SQLException {
 		
 		if (voterID.equals("") || name.equals("") || social.equals("")){
@@ -35,15 +35,7 @@ public class VotingServer {
 			//  Auto-generated catch block
 		
 		
-=======
-	IOException,
-	SQLException {
 
-		if (voterID.equals("") || name.equals("") || social.equals("")) {
-			return false;
-		}
-		return (db.validateVoter(voterID, social, name));
->>>>>>> 23ede0b6734030e503792ffb16b917a6944ddb7a
 	}
 
 	//The following validates the Admin's Login

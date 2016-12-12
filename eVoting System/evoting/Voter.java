@@ -1,5 +1,7 @@
 package evoting;
 
+import java.sql.SQLException;
+
 public class Voter {
 
 	private String voterName;
@@ -11,8 +13,9 @@ public class Voter {
 	/**
 	 * 
 	 * @param candidate
+	 * @throws SQLException 
 	 */
-	public void castVote(Candidate candidate) {
+	public void castVote(Candidate candidate) throws SQLException {
 
 		VotingDatabase db = new VotingDatabase();
 		db.castVoteToDB(candidate.getName());

@@ -24,7 +24,7 @@ public class CryptoTool {
   /**
    * String to hold name of the encryption algorithm.
    */
-  public static final String ALGORITHM = "RSA";
+  public static final String ALGORITHM = "DES";
 
   /**
    * String to hold the name of the private key file.
@@ -135,7 +135,7 @@ public class CryptoTool {
     byte[] dectyptedText = null;
     try {
       // get an RSA cipher object and print the provider
-      final Cipher cipher = Cipher.getInstance("RSA");
+      final Cipher cipher = Cipher.getInstance(ALGORITHM);
 
       // decrypt the text using the private key
       cipher.init(Cipher.DECRYPT_MODE, key);

@@ -1,5 +1,7 @@
 package evoting;
 
+import java.sql.SQLException;
+
 public class Admin {
 
 	private int[] unofficialTally = new int[8];
@@ -15,7 +17,13 @@ public class Admin {
 
 	public String getOfficialTally() {
 
-		String tally = Database.getTally();
+		String tally = "0";
+		try {
+			tally = Database.getTally();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return tally;
 
 	}
