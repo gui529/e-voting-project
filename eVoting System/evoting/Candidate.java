@@ -1,12 +1,6 @@
-
 package evoting;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.StringTokenizer;
 
 public class Candidate {
 
@@ -15,13 +9,9 @@ public class Candidate {
 	private int numberOfVotes;
 	FileWriter myWriter;
 
-
-
 	public void setName(String candidateName) {
 		this.candidateName = candidateName;
 	}
-
-
 
 	public void setParty(String candidateParty) {
 		this.candidateParty = candidateParty;
@@ -34,17 +24,13 @@ public class Candidate {
 	public String getParty() {
 		return candidateParty;
 	}
-	
-	public void addVote(){
-		numberOfVotes++;
-		
 
-		
-		
+	public void addVote() {
+		numberOfVotes++;
+
 	}
-	
-	
-	public int getVotes(){
+
+	public int getVotes() {
 		return numberOfVotes;
 	}
 
