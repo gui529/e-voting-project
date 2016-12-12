@@ -38,6 +38,7 @@ public class Voter {
 
 		VotingDatabase db = new VotingDatabase();
 		db.castVoteToDB(candidate.getName());
+		
 
 	}
 

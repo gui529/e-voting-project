@@ -1,5 +1,12 @@
 		package evoting;
 
+		import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 		import java.sql.Connection;
 		import java.sql.DriverManager;
 		import java.sql.ResultSet;
@@ -15,6 +22,8 @@
 		//Code taken from DBdemo.java
 
 		public class VotingDatabase {
+		byte[] mEncryptedVoterName;
+			
 
 		 /** The name of the MySQL account to use (or empty for anonymous) */
 		 private final String userName = "root";
@@ -94,6 +103,20 @@
 		  }
 		  updateCandidateChosen();
 		 }
+		 
+		 
+		/* public void EncryptData(String name,  PublicKey pubkey){
+			 Connection conn = null;
+			 cipher.generateKey();
+			 try{
+				 conn = this.getConnection();				 
+			 }catch(SQLException e){
+				 e.printStackTrace();
+			 }
+			 String query = String.format("UPDATE voter SET %s WHERE VOTER_ID = \'5639422\'", cipher.encrypt(name, )
+		 }*/
+		 
+		 
 
 		 public void updateHasVoted(String voterID) {
 		  Connection conn = null;
@@ -106,7 +129,8 @@
 
 		  try {
 		   Statement st = conn.createStatement();
-		   st.executeUpdate(query);
+		 st.executeUpdate(query);
+		   
 		   // updateCandidateChosen(voterID);
 
 		   // rs.next();
@@ -179,10 +203,13 @@
 		  try {
 		   Statement st = conn.createStatement();
 		   ResultSet rs = st.executeQuery(query);
+		
 
 		   rs.next();
+		   
 
 		   String candidate1 = rs.getString("CANDIDATE_NAME");
+	
 		   int votes1 = rs.getInt("TALLY");
 		   rs.next();
 		   String candidate2 = rs.getString("CANDIDATE_NAME");
@@ -306,14 +333,128 @@
 		  }
 
 
-
-
-
 		  return voterList;
 		 }
 
 
+		 public void EncryptDB() throws SQLException{
+			 Connection conn = null;
+			 CryptoTool.generateKey();
+			 System.out.println(CryptoTool.areKeysPresent());
 
+			
+//			File pb = new File(CryptoTool.PUBLIC_KEY_FILE);
+//			 final PublicKey publicKey = (PublicKey) pb;
+			 
+			 ObjectInputStream inputStream = null;
+
+		      // Encrypt the string using the public key
+		      try {
+				inputStream = new ObjectInputStream(new FileInputStream(CryptoTool.PUBLIC_KEY_FILE));
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		      
+		      
+		      PublicKey publicKey = null;
+			try {
+				publicKey = (PublicKey) inputStream.readObject();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		      
+		      //TESTING
+			 //String cryptTest = ("hi its joe");
+			 //final byte[] cipherText = CryptoTool.encrypt(cryptTest, publicKey);
+			// System.out.println(cipherText);
+			  try {
+			   conn = this.getConnection();
+			  } catch (SQLException e) {
+				   e.printStackTrace();
+				  }
+			  Statement st = conn.createStatement();
+
+			  ResultSet rs = st.executeQuery("SELECT VOTER_NAME FROM voter;");
+			  while (rs.next()) {
+				  String voterName = rs.getString("VOTER_NAME");
+				  //System.out.print(voterName + "\n");
+				  Statement st2 = conn.createStatement();
+				  
+				  mEncryptedVoterName = CryptoTool.encrypt(voterName, publicKey);
+				 //String EVN = new String (encryptedVoterName);
+				
+				  String Updatequery = String.format("UPDATE voter SET VOTER_NAME= \"%s\" WHERE VOTER_NAME = \'%s\'", mEncryptedVoterName, voterName);
+				  st2.executeUpdate(Updatequery);
+				  //System.out.println(voterName + "change to rs2");
+					
+				}
+		 }
+		 
+		 
+		 public void DecryptDB() throws SQLException{
+			 Connection conn = null;
+			 CryptoTool.generateKey();
+			 
+			 ObjectInputStream inputStream = null;
+
+		      // Encrypt the string using the public key
+		      try {
+				inputStream = new ObjectInputStream(new FileInputStream(CryptoTool.PRIVATE_KEY_FILE));
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		      
+		      
+		      PrivateKey privateKey = null;
+			try {
+				privateKey = (PrivateKey) inputStream.readObject();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			try {
+				   conn = this.getConnection();
+				  } catch (SQLException e) {
+					   e.printStackTrace();
+					  }
+				  Statement st = conn.createStatement();
+				
+				  ResultSet rs = st.executeQuery("SELECT VOTER_NAME FROM voter;");
+				  while (rs.next()) {
+					  String voterName =  rs.getString("VOTER_NAME");
+					 // byte [] encryptedVoterName;
+					  mEncryptedVoterName = voterName.getBytes();
+					  
+					  
+					  System.out.print(voterName + "\n");
+					  Statement st2 = conn.createStatement();
+					  
+					 String decryptedVoterNames = CryptoTool.decrypt(mEncryptedVoterName, privateKey);
+					 // String EVN = new String (encryptedVoterName);
+					
+					  String Updatequery = String.format("UPDATE voter SET VOTER_NAME= \"%s\" WHERE VOTER_NAME = \'%s\'",decryptedVoterNames, voterName);
+					  st2.executeUpdate(Updatequery);
+					  System.out.println(voterName + "change to rs2");
+					}
+			 
+			 
+		 }
 
 
 

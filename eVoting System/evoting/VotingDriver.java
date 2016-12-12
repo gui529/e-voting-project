@@ -25,8 +25,13 @@ public class VotingDriver {
 	String name;
 	String social;
 	Voter voter;
+	CryptoTool cipher;
 
 	public void createAndShowGUI() {
+		
+		CryptoTool.generateKey();
+		
+		
 		Candidate candidate1 = new Candidate();
 		Candidate candidate2 = new Candidate();
 		
@@ -110,12 +115,15 @@ public class VotingDriver {
 
 		JButton nextButton = new JButton("NEXT");
 		nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				voterID = voterId_textf.getText();
 				String name = voterName_textf.getText();
 				String social = last4ss_textf.getText();
 				voter = new Voter();
+				
 
 				try {
 

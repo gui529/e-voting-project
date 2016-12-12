@@ -42,8 +42,10 @@ public class VotingServer {
 	IOException, SQLException {
 		
 		if (voterID.equals("") || name.equals("") || social.equals("")){
+			
 			return false;
 		}
+		
 			return (db.validateVoter(voterID, social, name));
 			//  Auto-generated catch block
 		

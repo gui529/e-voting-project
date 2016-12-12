@@ -135,7 +135,7 @@ public class CryptoTool {
     byte[] dectyptedText = null;
     try {
       // get an RSA cipher object and print the provider
-      final Cipher cipher = Cipher.getInstance(ALGORITHM);
+      final Cipher cipher = Cipher.getInstance("RSA");
 
       // decrypt the text using the private key
       cipher.init(Cipher.DECRYPT_MODE, key);

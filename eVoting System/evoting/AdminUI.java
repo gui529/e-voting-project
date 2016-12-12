@@ -43,10 +43,12 @@ import javax.swing.JTextField;
 	
 	 //Admin Function Panel GUI
 	 JLabel adminFunPanelLabel = new JLabel("Welcome, Admin");
+	 JLabel electionStarted = new JLabel("Election Has Started");
 	 JButton adminLogoutButton = new JButton("LOGOUT");
 	 JButton adminUnofficialTallyButton = new JButton("UNOFFICIAL TALLY");
 	 JButton adminOfficialTallyButton = new JButton("OFFICIAL TALLY");
 	 JButton endElectionButton = new JButton("END ELECTION AND GET OFFICIAL TALLY");
+	 JButton startElectionButton = new JButton("START ELECTION");
 
 	 JButton adminRecountButton = new JButton("RECOUNT");
 	 JPasswordField passwordField = new JPasswordField(10);
@@ -79,10 +81,14 @@ import javax.swing.JTextField;
 	
 	  adminFunPanel.setLayout(new BoxLayout(adminFunPanel, BoxLayout.Y_AXIS));
 	  adminFunPanel.add(adminFunPanelLabel);
+	  adminFunPanel.add(electionStarted);
 	  adminFunPanel.add(adminUnofficialTallyButton);
 	  adminFunPanel.add(adminOfficialTallyButton);
 	  adminFunPanel.add(adminRecountButton);
+	  adminFunPanel.add(startElectionButton);
 	  adminFunPanel.add(adminLogoutButton);
+	  
+	  electionStarted.setVisible(false);
 	
 	
 	  //***************THE FOLLOWING IS WHERE THE LISTENERS ARE LOCATED*********************\\
@@ -203,6 +209,12 @@ import javax.swing.JTextField;
 			  
 			  adminFunPanel.revalidate();
 			  adminFunPanel.repaint();		
+			  try {
+				db.EncryptDB();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		   }
 		  });  
 	  
@@ -261,19 +273,7 @@ import javax.swing.JTextField;
 			    	
 			    }
 			        
-			        
-			        
-			        
-
-
-			        
-			        
-			   
-			   
-			   
-			  
-			  
-			  
+	
 			  adminFunPanel.add(list);
 			  adminFunPanel.add(homeButton);
 			  adminFunPanel.revalidate();
@@ -281,7 +281,21 @@ import javax.swing.JTextField;
 		   }
 		  }); 
 	  
-	  
+	  startElectionButton.addActionListener(new ActionListener(){
+		  public void actionPerformed(ActionEvent o){
+			  try {
+				db.DecryptDB();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		  }
+		  
+		// adminFunPanel.removeAll();
+		  
+	  }
+			  
+			  );
 	
 	  adminLogoutButton.addActionListener(new ActionListener() {
 	   public void actionPerformed(ActionEvent o) {
